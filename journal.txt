@@ -1,0 +1,5 @@
+Lundi 06/02:
+    Installation github, pycharm, pyxel
+    prise en main de github et pyxel
+    Création des fichiers/classes Pokemon et Capacite
+    Création du fichier constants
