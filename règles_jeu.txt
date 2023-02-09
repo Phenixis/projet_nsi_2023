@@ -1,0 +1,14 @@
+REGLES JEU POKEMON:
+	les combats:
+		-attaques(degats,soins,changement stats...)
+		-utiliser objets
+		-fuite(que si sauvage)
+		-changer pokemon
+
+	la map:
+		-se déplacer(open world)
+		-endroits bloqués selon l'histoire
+		-pokémons à capturer sur la map
+		-interaction avec personnages
+		
+
