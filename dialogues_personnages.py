@@ -26,3 +26,4 @@ PIERRE
 
 def interaction():
     # quand on clique pour parler au personnage
+    ...
