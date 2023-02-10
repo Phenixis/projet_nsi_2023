@@ -6,7 +6,7 @@ Lundi 06/02:
 
 Jeudi 09/02:
     Mise en place des "règles de jeu", de ce qu'il y aura dans le jeu (combats, map)
-    On apprend a Sasha à jouer a Pokémon... (et ouais il a raté son enfance...)
-    répartition des tâches : -Maxime : logique du backhead (dresseurs...)
-                             -Stéphane : interaction avec les personnages (dialogues...)
-                             -Sasha : interface graphique (map, pokémons...)
+    On apprend a Sasha à jouer a Pokémon...
+    répartition des tâches : -Maxime : logique du backend (dresseurs, combats, ...)
+                             -Stéphane : interaction avec les personnages (dialogues, ...)
+                             -Sasha : interface graphique (map, pokémons,   ...)
