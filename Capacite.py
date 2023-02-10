@@ -1,5 +1,9 @@
 class Capacite:
 
-    def __init__(self, type: Type, PP: int, degat:int, chgmnt_statut:str, chance_chgmnt_statut:int, chance_coup_critique:int):
-        ...
-    
+    def __init__(self, categorie: str, type: str, PP: int, puissance:int, precision: int):
+        self.categ = categorie
+        self.type = type
+        self.PP = PP
+        self.puissance = puissance
+        self.precision = precision
+

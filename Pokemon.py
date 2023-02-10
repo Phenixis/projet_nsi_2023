@@ -6,3 +6,5 @@ class Pokemon:
         self.statut = statut
         self.stats = stats
 
+    def utilise_sur(self, cap: Capacite, other: Pokemon):
+        if self.stats['precision']
