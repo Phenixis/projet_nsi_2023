@@ -10,3 +10,9 @@ Jeudi 09/02:
     répartition des tâches : -Maxime : logique du backend (dresseurs, combats, ...)
                              -Stéphane : interaction avec les personnages (dialogues, ...)
                              -Sasha : interface graphique (map, pokémons,   ...)
+Vendredi 10/02:
+    Maxime : Avancement de la classe Pokémon avec la fonction utiliser_sur (la précision des attaques),
+             creation des constantes, crétion de la classe Capacité
+    Sasha : interface d'une maison
+
+    Stéphane : Avancement sur la classe perso
