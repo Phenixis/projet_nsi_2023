@@ -1,0 +1,9 @@
+- [ ] classe Type
+  - [ ] faiblesse face à tel type
+  - [ ] force face à tel type
+  - [ ] inoffensif face à tel type
+- [ ] classe statut ?
+  - [ ] attaque bloquée oui/non
+  - [ ] perte de vie
+  - [ ] ...
+- 
