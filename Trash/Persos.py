@@ -37,4 +37,4 @@ def defie(perso: Perso):
         perso.def_interaction("Je te défie !")
         perso.interaction()
 
-defie(Perso)
+# defie(Perso)
