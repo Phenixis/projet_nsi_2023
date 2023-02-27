@@ -1,14 +1,4 @@
-REGLES JEU POKEMON:
-	les combats:
-		-attaques(degats,soins,changement stats...)
-		-utiliser objets
-		-fuite(que si sauvage)
-		-changer pokemon
+LABYRINTHE:
 
-	la map:
-		-se déplacer(open world)
-		-endroits bloqués selon l'histoire
-		-pokémons à capturer sur la map
-		-interaction avec personnages
-		
-
+2 joueurs
+Le 1er s'échappe, le 2nd doit arrêter l'autre
