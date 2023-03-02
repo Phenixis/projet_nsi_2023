@@ -1,4 +1,4 @@
-- [ ] Classe Joueur - M
+- [] Classe Joueur - M
 - [ ] J1 
   - [ ] Bouclier
   - [ ] Lampe torche
