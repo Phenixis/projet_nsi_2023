@@ -1,14 +1,29 @@
-REGLES JEU POKEMON:
-	les combats:
-		-attaques(degats,soins,changement stats...)
-		-utiliser objets
-		-fuite(que si sauvage)
-		-changer pokemon
+LABYRINTHE:
 
-	la map:
-		-se déplacer(open world)
-		-endroits bloqués selon l'histoire
-		-pokémons à capturer sur la map
-		-interaction avec personnages
-		
+2 joueurs
+Le 1er s'échappe, le 2nd doit arrêter l'autre
 
+J1 :
+    Doit s'échapper
+    Compétences :
+        Bouclier -> 15s d'invulnérabilité, cooldown : 1min
+        Lampe torche -> stunt l'adversaire/monstres pendant 3-5s toutes les minutes
+        saut/passage à travers un mur -> traverser un seul mur, toutes les 2min
+        clonage -> perso qui attire les monstres
+
+
+***
+J2 :
+    Doit bloquer l'autre
+    Compétences :
+        Charge -> tout droit très vite sur une certaine distance, 5s de stunt si mur
+        Monstres -> 3-4 monstres se baladent dans le labyrinthe
+        Fermer porte -> plein de portes qui se ferme, bouton à appuyer pour annuler
+        Murs invisibles -> murs invisibles
+
+Plusieurs niveaux :
+    2 1ers niveaux : J1 doit sortir du labyrinthe, il doit ne pas mourir par les pièges du J2
+    Dernier niveau : J1 doit sortir du labyrinthe sans que J2 l'ai touché
+
+
+Temps max : 10min
