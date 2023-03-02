@@ -16,4 +16,4 @@
 - [ ] Algo pour trouver chemin entrée/sortie
 
 - [ ] Classe case - Stéphane
-- [ ] Classe compétence
+- [ ] Classe compétence - M
