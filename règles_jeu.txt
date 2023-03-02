@@ -4,12 +4,15 @@ LABYRINTHE:
 Le 1er s'échappe, le 2nd doit arrêter l'autre
 
 J1 :
+    Stats:
+        Vitesse
+
     Doit s'échapper
     Compétences :
         Bouclier -> 15s d'invulnérabilité, cooldown : 1min
         Lampe torche -> stunt l'adversaire/monstres pendant 3-5s toutes les minutes
         saut/passage à travers un mur -> traverser un seul mur, toutes les 2min
-        clonage -> perso qui attire les monstres
+        clonage -> perso qui attire les monstres, reste sur place, 1/2 fois dans la partie
 
 
 ***
@@ -20,6 +23,7 @@ J2 :
         Monstres -> 3-4 monstres se baladent dans le labyrinthe
         Fermer porte -> plein de portes qui se ferme, bouton à appuyer pour annuler
         Murs invisibles -> murs invisibles
+        Rocket dirigeable -> 10s
 
 Plusieurs niveaux :
     2 1ers niveaux : J1 doit sortir du labyrinthe, il doit ne pas mourir par les pièges du J2
