@@ -18,8 +18,9 @@ Vendredi 10/02:
     Stéphane : Avancement sur la classe perso
 
 Lundi 27/02:
-    Maxime :
+    On change de projet !!!
 
-    Sasha :
-
-    Stéphane :
+Jeudi 02/03:
+    - réflexion sur le labyrinthe, et réflexion sur ce qu'il y a à faire
+    (les joueurs, algo pour le labyrinthe, déroulement du jeu...)
+    - répartition des tâches

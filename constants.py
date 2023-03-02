@@ -1,0 +1,1 @@
+from Compétence import *
