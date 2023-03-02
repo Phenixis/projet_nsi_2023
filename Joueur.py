@@ -5,7 +5,7 @@ class Joueur:
 
     def __init__(self, lst_comp: list[Comp], stats: dict, x_dep: int, y_dep: int):
         self.alive = True
-        self.comps = lst_comp
+        self.comp1, self.comp2, self.comp3, self.comp4 = lst_comp
         self.stats = stats
         self.coor = [x_dep, y_dep]
 
@@ -18,9 +18,4 @@ class Joueur:
             self.coor[0] -= val
         elif dir == 'right':
             self.coor[0] += val
-        print(self.coor)
-
-J1 = Joueur([...], {...: ...}, 0, 0)
-
-J1.goes('up')
-J1.goes('down', 5)
+        print("Coordonées du joueur :\n\tx =", self.coor[0], "\n\ty =", self.coor[1])
