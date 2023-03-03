@@ -1,5 +1,6 @@
 import random
 import pygame
+from keyboard import is_pressed
 from time import sleep
 
 pygame.init()
@@ -25,6 +26,38 @@ rows = int(size[1] / width)
 
 stack = []
 
+class Joueur(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+
+        self.image = pygame.Surface([10, 10])
+        self.image.fill(RED)
+
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.coor = [self.rect.x, self.rect.y]
+
+        # Booléen indiquant si la raquette doit se déplacer vers la droite
+        self.moving_right = False
+        # Booléen indiquant si la raquette doit se déplacer vers la gauche
+        self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
+
+    def update(self):
+        # Si la raquette doit se déplacer vers la droite, on incrémente sa position
+        if self.moving_right:
+            self.rect.x += 2
+        # Si la raquette doit se déplacer vers la gauche, on décrémente sa position
+        if self.moving_left:
+            self.rect.x -= 2
+
+        if self.moving_up:
+            self.rect.y -= 2
+
+        if self.moving_down:
+            self.rect.y += 2
 
 class Cell():
     def __init__(self, x, y):
@@ -49,7 +82,7 @@ class Cell():
 
     def draw(self):
         if self.current:
-            pygame.draw.rect(screen, RED, (self.x, self.y, width, width))
+            pygame.draw.rect(screen, WHITE, (self.x, self.y, width, width))
         elif self.visited:
             pygame.draw.rect(screen, WHITE, (self.x, self.y, width, width))
 
@@ -115,7 +148,6 @@ def removeWalls(current_cell, next_cell):
         current_cell.walls[0] = False
         next_cell.walls[2] = False
 
-
 grid = []
 
 for y in range(rows):
@@ -127,14 +159,7 @@ current_cell = grid[0][0]
 next_cell = 0
 
 # -------- Main Program Loop -----------
-go_on = True
-while go_on:
-    while not done:
-        # --- Main event loop
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
-
+while not done:
         screen.fill(GREY)
 
         current_cell.visited = True
@@ -179,6 +204,44 @@ while go_on:
         if current_cell == grid[0][0]:
             done = True
 
-    ...
+
+joueur = Joueur(200, 200)
+go_on = True
+while go_on:
+    for event in pygame.event.get():
+        if is_pressed("esc"):
+            done = True
+        if is_pressed('q') :
+            joueur.moving_up = False
+            joueur.moving_down = False
+            joueur.moving_right = False
+            joueur.moving_left = True
+        elif is_pressed('d'):
+            joueur.moving_up = False
+            joueur.moving_down = False
+            joueur.moving_left = False
+            joueur.moving_right = True
+        elif is_pressed('s'):
+            joueur.moving_left = False
+            joueur.moving_right = False
+            joueur.moving_up = False
+            joueur.moving_down = True
+        elif is_pressed('z'):
+            joueur.moving_left = False
+            joueur.moving_right = False
+            joueur.moving_down = False
+            joueur.moving_up = True
+        else:
+            joueur.moving_left = False
+            joueur.moving_right = False
+            joueur.moving_down = False
+            joueur.moving_up = False
+
+    joueur.update()
+    screen.blit(joueur.image, joueur.rect)
+    pygame.display.flip()
+    # screen.fill(WHITE)
+    clock.tick(60)
+
 
 pygame.quit()
