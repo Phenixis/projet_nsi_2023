@@ -1,4 +1,5 @@
 from time import sleep
+
 terrain = [[0 for _ in range(5)] for __ in range(5)]
 
 terrain[0][0] = 2
@@ -18,16 +19,42 @@ terrain[4][4] = 4
 for ligne in terrain:
     print(ligne)
 
-
 x = 0
 y = 0
 while terrain[4][4] != 2:
-    if terrain[x][y + 1] == 0:
-        y+=1
+    print('\b'*1000)
+    if terrain[3][4] != 2:
+        if terrain[x][y + 1] in [0, 4]:
+            terrain[x][y] = 0
+            y += 1
+            terrain[x][y] = 2
+        if terrain[x + 1][y] in [0, 4]:
+            terrain[x][y] = 0
+            x += 1
+            terrain[x][y] = 2
+        for ligne in terrain:
+            print(ligne)
+            sleep(1)
+    else:
+        terrain[x][y] = 0
+        x += 1
         terrain[x][y] = 2
-    if terrain[x + 1][y] == 0:
-        x+=1
-        terrain[x][y] = 2
-    for ligne in terrain:
+        sleep(1)
         print(ligne)
-    sleep(2)
+
+
+'''
+
+------------------------------------------------------------------------------------------------------------------------
+        Déterminer un ratio pour chaque case, plus le ratio est petit, plus il est proche de la sortie
+------------------------------------------------------------------------------------------------------------------------
+
+ratio = 1000
+for case in lab:
+    if ratio de case == '':
+        case.ratio = ratio
+        ratio -= 1
+          
+
+
+'''
