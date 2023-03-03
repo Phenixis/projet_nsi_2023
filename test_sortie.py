@@ -58,3 +58,19 @@ for case in lab:
 
 
 '''
+from Case import *
+lab = {}
+
+def best_chemin():
+    #parcourir les chemins et garder le plus court
+    ways = {}
+    sortie = False
+
+
+
+def ratio():
+    ratio = 1000
+    for case in way:
+        if ratio == '':
+            case.ratio = ratio
+            ratio -= 1
