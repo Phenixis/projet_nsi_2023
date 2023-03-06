@@ -1,12 +1,49 @@
 import networkx as nx
-from random import choice, sample
-import matplotlib.pyplot as plt
-from PIL import Image, ImageDraw
+from random import choice
 import pygame as pg
 from keyboard import is_pressed
+import pygame
+from time import sleep
 
 WIDTH = 15
 HEIGHT = 15
+
+pygame.init()
+
+WHITE = (255, 255, 255)
+GREY = (20, 20, 20)
+BLACK = (0, 0, 0)
+PURPLE = (100, 0, 100)
+RED = (255, 0, 0)
+clock = pygame.time.Clock()
+
+
+class Joueur(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+
+        self.image = pygame.Surface([10, 10])
+        self.image.fill(RED)
+
+        self.x = 0
+        self.y = 0
+        self.coor = [self.x * 50 + 25, self.y * 50 + 25]
+
+        self.moving_right = False
+        self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
+
+    def update(self):
+        if self.moving_right:
+            self.x += 1
+        if self.moving_left:
+            self.x -= 1
+        if self.moving_up:
+            self.y -= 1
+        if self.moving_down:
+            self.y += 1
+        self.coor = [self.x * 50 + 25, self.y * 50 + 25]
 
 
 def neighbors(x: int, y: int) -> list[tuple[int, int]]:
@@ -73,11 +110,53 @@ for x in range(WIDTH):
     for y in range(HEIGHT):
         if (x + 1, y) not in g.neighbors((x, y)):  # mur vertical
             pg.draw.line(screen, (0, 0, 0), ((x + 1) * SIZE, y * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 5)
+
         if (x, y + 1) not in g.neighbors((x, y)):  # mur horizontal
             pg.draw.line(screen, (0, 0, 0), (x * SIZE, (y + 1) * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 5)
+lst = []
+for edge in g.edges:
+    lst.append(edge)
+
+print(lst)
+
+joueur = Joueur()
 
 go_on = True
 while go_on:
-    if is_pressed("esc"):
-        go_on = False
+    pg.draw.rect(screen, (255, 255, 255), pg.Rect(joueur.coor[0], joueur.coor[1], 10, 10))
+    for event in pygame.event.get():
+        if is_pressed("esc"):
+            go_on = False
+        if is_pressed('q'):
+            joueur.moving_up = False
+            joueur.moving_down = False
+            joueur.moving_right = False
+            joueur.moving_left = True
+        elif is_pressed('d'):
+            joueur.moving_up = False
+            joueur.moving_down = False
+            joueur.moving_left = False
+            joueur.moving_right = True
+        elif is_pressed('s'):
+            joueur.moving_left = False
+            joueur.moving_right = False
+            joueur.moving_up = False
+            joueur.moving_down = True
+        elif is_pressed('z'):
+            joueur.moving_left = False
+            joueur.moving_right = False
+            joueur.moving_down = False
+            joueur.moving_up = True
+        else:
+            joueur.moving_left = False
+            joueur.moving_right = False
+            joueur.moving_down = False
+            joueur.moving_up = False
+
     pg.display.update()
+    joueur.update()
+    screen.blit(joueur.image, joueur.coor)
+    pygame.display.flip()
+    clock.tick(15)
+
+pygame.quit()
