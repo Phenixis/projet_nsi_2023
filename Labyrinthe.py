@@ -30,8 +30,9 @@ class Joueur(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
 
-        self.image = pygame.Surface([10, 10])
-        self.image.fill(RED)
+        self.image = pygame.image.load("perso.png").convert()
+        self.image = pygame.transform.scale(self.image, (
+            self.image.get_width() // 4, self.image.get_height() // 4))
 
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -215,21 +216,25 @@ while go_on:
             joueur.moving_down = False
             joueur.moving_right = False
             joueur.moving_left = True
+            joueur.image = pygame.transform.rotate(joueur.image, 90)
         elif is_pressed('d'):
             joueur.moving_up = False
             joueur.moving_down = False
             joueur.moving_left = False
             joueur.moving_right = True
+            joueur.image = pygame.transform.rotate(joueur.image, 90)
         elif is_pressed('s'):
             joueur.moving_left = False
             joueur.moving_right = False
             joueur.moving_up = False
             joueur.moving_down = True
+            joueur.image = pygame.transform.rotate(joueur.image, 180)
         elif is_pressed('z'):
             joueur.moving_left = False
             joueur.moving_right = False
             joueur.moving_down = False
             joueur.moving_up = True
+            joueur.image = pygame.transform.rotate(joueur.image, 180)
         else:
             joueur.moving_left = False
             joueur.moving_right = False
