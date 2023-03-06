@@ -29,19 +29,14 @@ class Joueur(pygame.sprite.Sprite):
         self.y = 0
         self.coor = [self.x * 50 + 25, self.y * 50 + 25]
 
-        self.moving_right = False
-        self.moving_left = False
-        self.moving_up = False
-        self.moving_down = False
-
-    def update(self):
-        if self.moving_right:
+    def update(self, dir: str):
+        if dir == "r":
             self.x += 1
-        if self.moving_left:
+        if dir == "l":
             self.x -= 1
-        if self.moving_up:
+        if dir == "u":
             self.y -= 1
-        if self.moving_down:
+        if dir == "d":
             self.y += 1
         self.coor = [self.x * 50 + 25, self.y * 50 + 25]
 
@@ -76,9 +71,11 @@ region = {}
 i = 0
 for y in range(HEIGHT):
     for x in range(WIDTH):
-        region[(x, y)] = i
+        region[(x, y)] = (i, 0)
         i += 1
 
+for x in region.values():
+    print(x)
 colors = WIDTH * HEIGHT
 g = nx.Graph()
 g.add_nodes_from(list(region.keys()))
@@ -86,9 +83,9 @@ g.add_nodes_from(list(region.keys()))
 while colors > 1:
     x1, y1 = choice(list(region.keys()))
     x2, y2 = choice(neighbors(x1, y1))
-    if region[x1, y1] != region[x2, y2]:
+    if region[x1, y1][0] != region[x2, y2][0]:
         g.add_edge((x1, y1), (x2, y2))
-        propagate(x1, y1, region[x2, y2])
+        propagate(x1, y1, region[x2, y2][0])
         colors -= 1
 
 positions = {(x, y): (0.5 * x, 0.5 * (HEIGHT - y)) for (x, y) in region.keys()}
@@ -109,10 +106,10 @@ pg.draw.line(screen, (0, 0, 0), (0, HEIGHT * 50), (0, 0), 5)
 for x in range(WIDTH):
     for y in range(HEIGHT):
         if (x + 1, y) not in g.neighbors((x, y)):  # mur vertical
-            pg.draw.line(screen, (0, 0, 0), ((x + 1) * SIZE, y * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 5)
+            pg.draw.line(screen, (0, 0, 0), ((x + 1) * SIZE, y * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
 
         if (x, y + 1) not in g.neighbors((x, y)):  # mur horizontal
-            pg.draw.line(screen, (0, 0, 0), (x * SIZE, (y + 1) * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 5)
+            pg.draw.line(screen, (0, 0, 0), (x * SIZE, (y + 1) * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
 lst = []
 for edge in g.edges:
     lst.append(edge)
@@ -127,36 +124,17 @@ while go_on:
     for event in pygame.event.get():
         if is_pressed("esc"):
             go_on = False
-        if is_pressed('q'):
-            joueur.moving_up = False
-            joueur.moving_down = False
-            joueur.moving_right = False
-            joueur.moving_left = True
-        elif is_pressed('d'):
-            joueur.moving_up = False
-            joueur.moving_down = False
-            joueur.moving_left = False
-            joueur.moving_right = True
-        elif is_pressed('s'):
-            joueur.moving_left = False
-            joueur.moving_right = False
-            joueur.moving_up = False
-            joueur.moving_down = True
-        elif is_pressed('z'):
-            joueur.moving_left = False
-            joueur.moving_right = False
-            joueur.moving_down = False
-            joueur.moving_up = True
-        else:
-            joueur.moving_left = False
-            joueur.moving_right = False
-            joueur.moving_down = False
-            joueur.moving_up = False
+        if is_pressed('q') and ((joueur.x, joueur.y), (joueur.x-1, joueur.y)) in g.edges:
+            joueur.update("l")
+        elif is_pressed('d') and ((joueur.x, joueur.y), (joueur.x+1, joueur.y)) in g.edges:
+            joueur.update("r")
+        elif is_pressed('s') and ((joueur.x, joueur.y), (joueur.x, joueur.y-1)) in g.edges:
+            joueur.update("d")
+        elif is_pressed('z') and ((joueur.x, joueur.y), (joueur.x, joueur.y+1)) in g.edges:
+            joueur.update("u")
 
-    pg.display.update()
-    joueur.update()
     screen.blit(joueur.image, joueur.coor)
-    pygame.display.flip()
-    clock.tick(15)
+    pg.display.update()
+    clock.tick(5)
 
 pygame.quit()
