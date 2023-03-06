@@ -200,7 +200,6 @@ while not done:
         pygame.display.flip()
 
         clock.tick(150)
-        sleep(1)
         if current_cell == grid[0][0]:
             done = True
 
