@@ -11,7 +11,7 @@ J1 :
     Compétences :
         Bouclier -> 15s d'invulnérabilité, cooldown : 1min
         Lampe torche -> stunt l'adversaire/monstres pendant 3-5s toutes les minutes
-        saut/passage à travers un mur -> traverser un seul mur, toutes les 2min
+	Passage à travers un mur -> traverser un seul mur, toutes les 2min
         clonage -> perso qui attire les monstres, reste sur place, 1/2 fois dans la partie
 
 
