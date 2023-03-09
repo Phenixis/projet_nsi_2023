@@ -1,0 +1,10 @@
+HEIGHT = 1450
+WIDTH = 840
+COLUMNS = 24  # nombre de colonnes
+ROWS = 16  # nombre de lignes
+SIZE = 50  # taille d'une case
+WHITE = (255, 255, 255)
+GREY = (20, 20, 20)
+BLACK = (0, 0, 0)
+PURPLE = (100, 0, 100)
+RED = (255, 0, 0)
