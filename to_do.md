@@ -1,19 +1,22 @@
-- [] Classe Joueur - M
-- [ ] J1 
+- [ ] Compétences J1
+  - [ ] Boutons
   - [ ] Bouclier
   - [ ] Lampe torche
   - [ ] Passage à travers un mur
   - [ ] Clonage
-- [ ] J2
+  
+  
+- [ ] Compétences J2
+  - [ ] Boutons
   - [ ] Charge
   - [ ] Monstres
   - [ ] Fermer porte
   - [ ] Murs Invisible
+  
 
-- [ ] modèle proto Labyrinthe - Sasha
-  - [ ] Algo pour labyrinthe
+- [x] Labyrinthe
 
-- [ ] Algo pour trouver chemin entrée/sortie
 
-- [ ] Classe case - Stéphane
-- [ ] Classe compétence - M
+- [ ] Joueur
+  - [ ] Déplacements
+  - [ ] interface Joueur
