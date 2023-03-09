@@ -1,4 +1,5 @@
 from win32api import GetSystemMetrics
+import pygame
 
 # Taille utiles
 WIDTH = GetSystemMetrics(0)
