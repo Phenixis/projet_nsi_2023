@@ -7,5 +7,3 @@ PURPLE = (100, 0, 100)
 RED = (255, 0, 0)
 size = (400, 400)
 screen = pg.display.set_mode(size)
-from keyboard import is_pressed
-from Case import *
