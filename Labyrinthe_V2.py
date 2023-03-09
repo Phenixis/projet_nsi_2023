@@ -71,11 +71,9 @@ region = {}
 i = 0
 for y in range(HEIGHT):
     for x in range(WIDTH):
-        region[(x, y)] = (i, 0)
+        region[(x, y)] = i
         i += 1
 
-for x in region.values():
-    print(x)
 colors = WIDTH * HEIGHT
 g = nx.Graph()
 g.add_nodes_from(list(region.keys()))
@@ -83,9 +81,9 @@ g.add_nodes_from(list(region.keys()))
 while colors > 1:
     x1, y1 = choice(list(region.keys()))
     x2, y2 = choice(neighbors(x1, y1))
-    if region[x1, y1][0] != region[x2, y2][0]:
+    if region[x1, y1] != region[x2, y2]:
         g.add_edge((x1, y1), (x2, y2))
-        propagate(x1, y1, region[x2, y2][0])
+        propagate(x1, y1, region[x2, y2])
         colors -= 1
 
 positions = {(x, y): (0.5 * x, 0.5 * (HEIGHT - y)) for (x, y) in region.keys()}
@@ -110,11 +108,11 @@ for x in range(WIDTH):
 
         if (x, y + 1) not in g.neighbors((x, y)):  # mur horizontal
             pg.draw.line(screen, (0, 0, 0), (x * SIZE, (y + 1) * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
+
 lst = []
+
 for edge in g.edges:
     lst.append(edge)
-
-print(lst)
 
 joueur = Joueur()
 
@@ -122,19 +120,24 @@ go_on = True
 while go_on:
     pg.draw.rect(screen, (255, 255, 255), pg.Rect(joueur.coor[0], joueur.coor[1], 10, 10))
     for event in pygame.event.get():
-        if is_pressed("esc"):
-            go_on = False
-        if is_pressed('q') and ((joueur.x, joueur.y), (joueur.x-1, joueur.y)) in g.edges:
-            joueur.update("l")
-        elif is_pressed('d') and ((joueur.x, joueur.y), (joueur.x+1, joueur.y)) in g.edges:
-            joueur.update("r")
-        elif is_pressed('s') and ((joueur.x, joueur.y), (joueur.x, joueur.y-1)) in g.edges:
-            joueur.update("d")
-        elif is_pressed('z') and ((joueur.x, joueur.y), (joueur.x, joueur.y+1)) in g.edges:
-            joueur.update("u")
+        if "text" in event.dict.keys():
+            if event.dict['text'] == 'escape':
+                go_on = False
+            if event.dict['text'] == 'q':
+                if ((joueur.x, joueur.y), (joueur.x - 1, joueur.y)) in g.edges:
+                    joueur.update("l")
+            elif event.dict['text'] == 'd':
+                if ((joueur.x, joueur.y), (joueur.x + 1, joueur.y)) in g.edges:
+                    joueur.update("r")
+            elif event.dict['text'] == 's':
+                if ((joueur.x, joueur.y), (joueur.x, joueur.y + 1)) in g.edges:
+                    joueur.update("d")
+            elif event.dict['text'] == 'z':
+                if ((joueur.x, joueur.y), (joueur.x, joueur.y - 1)) in g.edges:
+                    joueur.update("u")
 
     screen.blit(joueur.image, joueur.coor)
     pg.display.update()
-    clock.tick(5)
+    clock.tick(60)
 
 pygame.quit()

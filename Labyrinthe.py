@@ -209,27 +209,27 @@ joueur = Joueur(200, 200)
 go_on = True
 while go_on:
     for event in pygame.event.get():
-        if is_pressed("esc"):
+        if event.key == pygame.K_ESCAPE:
             done = True
-        if is_pressed('q') :
+        if event.key == pygame.K_q:
             joueur.moving_up = False
             joueur.moving_down = False
             joueur.moving_right = False
             joueur.moving_left = True
             joueur.image = pygame.transform.rotate(joueur.image, 90)
-        elif is_pressed('d'):
+        elif event.key == pygame.K_d:
             joueur.moving_up = False
             joueur.moving_down = False
             joueur.moving_left = False
             joueur.moving_right = True
             joueur.image = pygame.transform.rotate(joueur.image, 90)
-        elif is_pressed('s'):
+        elif event.key == pygame.K_s:
             joueur.moving_left = False
             joueur.moving_right = False
             joueur.moving_up = False
             joueur.moving_down = True
             joueur.image = pygame.transform.rotate(joueur.image, 180)
-        elif is_pressed('z'):
+        elif event.key == pygame.K_z:
             joueur.moving_left = False
             joueur.moving_right = False
             joueur.moving_down = False
