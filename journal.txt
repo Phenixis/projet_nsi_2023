@@ -24,3 +24,4 @@ Jeudi 02/03:
     - réflexion sur le labyrinthe, et réflexion sur ce qu'il y a à faire
     (les joueurs, algo pour le labyrinthe, déroulement du jeu...)
     - répartition des tâches
+
