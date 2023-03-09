@@ -7,7 +7,7 @@ pygame.init()
 size = width, height = 600, 600
 screen = pygame.display.set_mode(size)
 
-# Clock
+# Clockz
 clock = pygame.time.Clock()
 
 # Load image
