@@ -1,9 +1,6 @@
 import networkx as nx
 from random import choice
-import pygame as pg
-from keyboard import is_pressed
 import pygame
-from time import sleep
 
 WIDTH = 15
 HEIGHT = 15
@@ -91,23 +88,23 @@ nx.draw_networkx_nodes(g, pos=positions, node_size=100)
 nx.draw_networkx_edges(g, pos=positions)
 SIZE = 50  # taille à l'écran
 
-pg.init()
-screen = pg.display.set_mode((WIDTH * 50, HEIGHT * 50))
+pygame.init()
+screen = pygame.display.set_mode((WIDTH * 50, HEIGHT * 50))
 
-pg.draw.rect(screen, (255, 255, 255), pg.Rect(0, 0, WIDTH * 50, HEIGHT * 50))
+pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(0, 0, WIDTH * 50, HEIGHT * 50))
 
-pg.draw.line(screen, (0, 0, 0), (0, 0), (WIDTH * 50, 0), 5)
-pg.draw.line(screen, (0, 0, 0), (WIDTH * 50, 0), (WIDTH * 50, HEIGHT * 50), 5)
-pg.draw.line(screen, (0, 0, 0), (WIDTH * 50, HEIGHT * 50), (0, HEIGHT * 50), 5)
-pg.draw.line(screen, (0, 0, 0), (0, HEIGHT * 50), (0, 0), 5)
+pygame.draw.line(screen, (0, 0, 0), (0, 0), (WIDTH * 50, 0), 5)
+pygame.draw.line(screen, (0, 0, 0), (WIDTH * 50, 0), (WIDTH * 50, HEIGHT * 50), 5)
+pygame.draw.line(screen, (0, 0, 0), (WIDTH * 50, HEIGHT * 50), (0, HEIGHT * 50), 5)
+pygame.draw.line(screen, (0, 0, 0), (0, HEIGHT * 50), (0, 0), 5)
 
 for x in range(WIDTH):
     for y in range(HEIGHT):
         if (x + 1, y) not in g.neighbors((x, y)):  # mur vertical
-            pg.draw.line(screen, (0, 0, 0), ((x + 1) * SIZE, y * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
+            pygame.draw.line(screen, (0, 0, 0), ((x + 1) * SIZE, y * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
 
         if (x, y + 1) not in g.neighbors((x, y)):  # mur horizontal
-            pg.draw.line(screen, (0, 0, 0), (x * SIZE, (y + 1) * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
+            pygame.draw.line(screen, (0, 0, 0), (x * SIZE, (y + 1) * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
 
 lst = []
 
@@ -118,26 +115,22 @@ joueur = Joueur()
 
 go_on = True
 while go_on:
-    pg.draw.rect(screen, (255, 255, 255), pg.Rect(joueur.coor[0], joueur.coor[1], 10, 10))
+    pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(joueur.coor[0], joueur.coor[1], 10, 10))
     for event in pygame.event.get():
+        if "key" in event.dict and event.dict['key'] == 27:
+            go_on = False
         if "text" in event.dict.keys():
-            if event.dict['text'] == 'escape':
-                go_on = False
-            if event.dict['text'] == 'q':
-                if ((joueur.x, joueur.y), (joueur.x - 1, joueur.y)) in g.edges:
-                    joueur.update("l")
-            elif event.dict['text'] == 'd':
-                if ((joueur.x, joueur.y), (joueur.x + 1, joueur.y)) in g.edges:
-                    joueur.update("r")
-            elif event.dict['text'] == 's':
-                if ((joueur.x, joueur.y), (joueur.x, joueur.y + 1)) in g.edges:
-                    joueur.update("d")
-            elif event.dict['text'] == 'z':
-                if ((joueur.x, joueur.y), (joueur.x, joueur.y - 1)) in g.edges:
-                    joueur.update("u")
+            if event.dict['text'] == 'q' and ((joueur.x, joueur.y), (joueur.x - 1, joueur.y)) in g.edges:
+                joueur.update("l")
+            elif event.dict['text'] == 'd' and ((joueur.x, joueur.y), (joueur.x + 1, joueur.y)) in g.edges:
+                joueur.update("r")
+            elif event.dict['text'] == 's' and ((joueur.x, joueur.y), (joueur.x, joueur.y + 1)) in g.edges:
+                joueur.update("d")
+            elif event.dict['text'] == 'z' and ((joueur.x, joueur.y), (joueur.x, joueur.y - 1)) in g.edges:
+                joueur.update("u")
 
     screen.blit(joueur.image, joueur.coor)
-    pg.display.update()
+    pygame.display.update()
     clock.tick(60)
 
 pygame.quit()
