@@ -22,7 +22,7 @@ J2 :
         Charge -> tout droit très vite sur une certaine distance, 5s de stunt si mur
         Monstres -> 3-4 monstres se baladent dans le labyrinthe
         Fermer porte -> plein de portes qui se ferme, bouton à appuyer pour annuler
-        Murs invisibles -> murs invisibles
+        (Murs invisibles -> murs invisibles)
         Rocket dirigeable -> 10s
 
 Plusieurs niveaux :
