@@ -16,7 +16,7 @@ class Joueur:
         self.coor = [0.0, 0.0]
         self.define_coor()
 
-    def update(self, dir: str):
+    def update(self, dir: str, region):
         """
         Permet un mouvement
         "r" correspond à "right"
@@ -33,6 +33,8 @@ class Joueur:
         if dir == "d":
             self.row += 1
         self.define_coor()
+        region[self.column, self.row][1] = True
+        return region
 
     def define_coor(self):
         """

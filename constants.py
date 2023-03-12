@@ -14,3 +14,4 @@ GREY = (20, 20, 20)
 BLACK = (0, 0, 0)
 PURPLE = (100, 0, 100)
 RED = (255, 0, 0)
+WALL_COLOR = PURPLE
