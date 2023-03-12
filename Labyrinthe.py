@@ -47,7 +47,6 @@ def draw_lab(surface, g, region):
 
 def draw_wall(coor, surface, g, region):
     x, y = coor
-    print(region[x, y][1])
     if region[x, y][1]:
         if (x + 1, y) not in g.neighbors((x, y)):  # mur vertical droit
             pygame.draw.line(surface, WALL_COLOR, ((x + 1) * SIZE, y * SIZE), ((x + 1) * SIZE, (y + 1) * SIZE), 3)
@@ -68,10 +67,7 @@ def fill_region(level):
     i = 0
     for y in range(ROWS):
         for x in range(COLUMNS):
-            if level == 2:
-                region[(x, y)] = [i, False]
-            else:
-                region[(x, y)] = [i, False]
+            region[(x, y)] = [i, False if level == 2 else True]
             i += 1
 
     return region

@@ -6,6 +6,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 
 graph, region = main(screen, 2)
 joueur = Joueur()
+go_on = True
 
 
 def moving_in_the_graph(player: Joueur, dir: str, region):
@@ -21,7 +22,7 @@ def moving_in_the_graph(player: Joueur, dir: str, region):
             (player.column, player.row), (player.column, player.row - 1)) in graph.edges:
         player.update("u", region)
 
-go_on = True
+
 while go_on:
     pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
     for event in pygame.event.get():
