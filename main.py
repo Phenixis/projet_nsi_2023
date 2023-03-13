@@ -6,6 +6,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 
 graph, region = main(screen, 2)
 joueur = Joueur()
+joueur.update("nowhere", region)
 go_on = True
 
 
