@@ -11,6 +11,10 @@ go_on = True
 
 
 def moving_in_the_graph(player: Joueur, dir: str, region):
+    """
+    Vérifie si la direction dans laquelle va le joueur a un mur ou non
+    déplace le joueur dans la direction si possible
+    """
     if dir == 'q' and ((player.column, player.row), (player.column - 1, player.row)) in graph.edges:
         player.update('l', region)
     elif event.dict['text'] == 'd' and (

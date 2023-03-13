@@ -46,6 +46,9 @@ def draw_lab(surface, g, region):
 
 
 def draw_wall(coor, surface, g, region):
+    """
+    Dessine les murs autour d'une case si elle a été visitée
+    """
     x, y = coor
     if region[x, y][1]:
         if (x + 1, y) not in g.neighbors((x, y)):  # mur vertical droit
