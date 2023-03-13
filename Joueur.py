@@ -1,3 +1,4 @@
+import Labyrinthe
 from constants import *
 
 class Joueur:
@@ -34,6 +35,9 @@ class Joueur:
             self.row += 1
         self.define_coor()
         region[self.column, self.row][1] = True
+        neighbors = Labyrinthe.neighbors(self.column, self.row)
+        for neighbor in neighbors:
+            region[neighbor[0], neighbor[1]][1] = True
         return region
 
     def define_coor(self):
