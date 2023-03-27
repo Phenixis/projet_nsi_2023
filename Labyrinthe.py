@@ -44,7 +44,7 @@ def draw_lab(surface, g, region):
         for y in range(ROWS):
             if region[x, y][1]:
                 draw_wall((x, y), surface, g, region)
-                draw_case((x,y), surface, g, region)
+                draw_case((x, y), surface, g, region)
 
 
 def draw_case(coor, surface, graphe, region):

@@ -1,5 +1,6 @@
 from win32api import GetSystemMetrics
 import pygame
+from time import time
 
 # Taille utiles
 WIDTH = GetSystemMetrics(0)
@@ -18,3 +19,6 @@ GREEN = (0, 102, 0)
 YELLOW = (255, 204, 0)
 WALL_COLOR = PURPLE
 BG = BLACK
+
+# Valeur constante
+LEVEL = 1  # int(input("À quel niveau voulez-vous jouer ? "))

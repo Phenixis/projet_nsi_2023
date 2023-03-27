@@ -5,15 +5,15 @@ class Joueur:
     """
     Crée un personnage
     """
-    def __init__(self):
+    def __init__(self, column, row, color):
         self.width = 30
         self.height = 42
 
         self.image = pygame.Surface([self.width, self.height])
-        self.image.fill(RED)
+        self.image.fill(color)
 
-        self.column = 0
-        self.row = 0
+        self.column = column
+        self.row = row
         self.coor = [0.0, 0.0]
         self.define_coor()
 
@@ -36,14 +36,18 @@ class Joueur:
         self.define_coor()
 
         region[self.column, self.row][1] = True
-
-        for case in region.keys():
+        if LEVEL == 3:
+            for case in region.keys():
+                neighbors = Labyrinthe.neighbors(self.column, self.row)
+                if case in neighbors:
+                    region[case][1] = True
+                else:
+                    region[case][1] = False
+        else:
             neighbors = Labyrinthe.neighbors(self.column, self.row)
-            if case in neighbors:
-                region[case][1] = True
-            else:
-                region[case][1] = False
 
+            for neighbor in neighbors:
+                region[neighbor][1] = True
         return region
 
     def define_coor(self):
