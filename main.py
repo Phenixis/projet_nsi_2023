@@ -39,6 +39,7 @@ while go_on:
             moving_in_the_graph(joueur, event.dict['text'], region)
             # draw_wall([joueur.column, joueur.row], screen, graph)
             if region[(joueur.column, joueur.row)][-1] == 1:
+                print("case d'arrivée atteinte !")
                 go_on = False
             if level == 2:
                 for neighbor in neighbors(joueur.column, joueur.row):

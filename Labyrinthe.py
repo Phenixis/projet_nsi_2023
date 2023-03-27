@@ -44,6 +44,7 @@ def draw_lab(surface, g, region):
         for y in range(ROWS):
             draw_wall([x, y], surface, g, region)
 
+def draw
 
 def draw_wall(coor, surface, g, region):
     """

@@ -1,3 +1,4 @@
-pygame>=2.2.0
-pywin32>=305
-networkx>=3.0
+pygame
+pywin32
+networkx
+matplotlib
