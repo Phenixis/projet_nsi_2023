@@ -44,4 +44,4 @@ class Joueur:
         """
         Défini les coordonnées x et y du joueur
         """
-        self.coor = [self.column * 50 + 10, self.row * 50 + 5]
+        self.coor = [self.column * 50 + 10, self.row * 50 + 4]

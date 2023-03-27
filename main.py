@@ -1,6 +1,6 @@
 from Labyrinthe import *
 
-level = 1 # int(input("À quel niveau voulez-vous jouer ? "))
+level = int(input("À quel niveau voulez-vous jouer ? "))
 pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
@@ -37,14 +37,18 @@ while go_on:
             go_on = False
         if "text" in event.dict.keys():
             moving_in_the_graph(joueur, event.dict['text'], region)
+<<<<<<< HEAD
             # draw_wall([joueur.column, joueur.row], screen, graph)
             if region[(joueur.column, joueur.row)][-1] == 1:
                 print("case d'arrivée atteinte !")
                 go_on = False
+=======
+            draw_wall([joueur.column, joueur.row], screen, graph, region)
+>>>>>>> parent of 7a6db84 (cours 27/03 : ajout dfs, affichage dfs)
             if level == 2:
                 for neighbor in neighbors(joueur.column, joueur.row):
-                    draw_wall(neighbor, screen, graph)
-    draw_lab(screen, graph, region)
+                    draw_wall(neighbor, screen, graph, region)
+
     screen.blit(joueur.image, joueur.coor)
     pygame.display.update()
     clock.tick(60)

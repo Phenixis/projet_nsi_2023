@@ -47,9 +47,12 @@ def draw_lab(surface, g, region):
 def draw
 
 def draw_wall(coor, surface, g, region):
+<<<<<<< HEAD
     """
     Dessine les murs autour d'une case si elle a été visitée
     """
+=======
+>>>>>>> parent of 7a6db84 (cours 27/03 : ajout dfs, affichage dfs)
     x, y = coor
     if region[x, y][1]:
         if (x + 1, y) not in g.neighbors((x, y)):  # mur vertical droit
