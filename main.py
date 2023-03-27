@@ -1,10 +1,12 @@
 from Labyrinthe import *
 
+level = 1 # int(input("À quel niveau voulez-vous jouer ? "))
 pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 
-graph, region = main(screen, 2)
+screen.fill(BG)
+graph, region = main(screen, level)
 joueur = Joueur()
 joueur.update("nowhere", region)
 go_on = True
@@ -35,8 +37,13 @@ while go_on:
             go_on = False
         if "text" in event.dict.keys():
             moving_in_the_graph(joueur, event.dict['text'], region)
-            draw_wall([joueur.column, joueur.row], screen, graph, region)
-
+            # draw_wall([joueur.column, joueur.row], screen, graph)
+            if region[(joueur.column, joueur.row)][-1] == 1:
+                go_on = False
+            if level == 2:
+                for neighbor in neighbors(joueur.column, joueur.row):
+                    draw_wall(neighbor, screen, graph)
+    draw_lab(screen, graph, region)
     screen.blit(joueur.image, joueur.coor)
     pygame.display.update()
     clock.tick(60)
