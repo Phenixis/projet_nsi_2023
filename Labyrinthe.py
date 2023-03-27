@@ -67,9 +67,10 @@ def fill_region(level):
     i = 0
     for y in range(ROWS):
         for x in range(COLUMNS):
-            print(level)
-            print(False if level == 2 else True)
-            region[(x, y)] = [i, False if level == 2 else True]
+            region[(x, y)] = [i, False if level == 2 else True, 0, 0]
+            """
+            [nb unique pour création lab, case visible, case qui tue ou non, case d'arrivée ou non]
+            """
             i += 1
 
     return region
