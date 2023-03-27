@@ -34,10 +34,16 @@ class Joueur:
         if dir == "d":
             self.row += 1
         self.define_coor()
+
         region[self.column, self.row][1] = True
-        neighbors = Labyrinthe.neighbors(self.column, self.row)
-        for neighbor in neighbors:
-            region[neighbor[0], neighbor[1]][1] = True
+
+        for case in region.keys():
+            neighbors = Labyrinthe.neighbors(self.column, self.row)
+            if case in neighbors:
+                region[case][1] = True
+            else:
+                region[case][1] = False
+
         return region
 
     def define_coor(self):
