@@ -125,7 +125,7 @@ while go_on:
         if len(path_ending):
             refresh_ending(time())
         if not (len(path_start) or len(path_ending)):
-            if time() > actual_time + 45:
+            if time() > actual_time + 60:
                 start_mob = False
                 actual_time = 0
             else:
