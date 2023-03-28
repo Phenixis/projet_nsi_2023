@@ -78,7 +78,7 @@ def refresh_ending(time):
     """
         vérifie pour la première valeur de path si son temps d'éxecution est atteint
         si oui, déplace le mob sur les coordonnées et supprime la première valeur de `path`
-        """
+    """
     global path_ending
     coor_mob, next_coor = list(path_ending.keys())[:2]
     if len(path_ending) >= 3:
@@ -90,6 +90,7 @@ def refresh_ending(time):
         region[next_coor][2] = False
         path_ending.clear()
 
+
 while go_on:
     pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
     for event in pygame.event.get():
@@ -99,13 +100,18 @@ while go_on:
             if event.dict['text'] == 'e' and actual_time == 0:
                 mob = Joueur(COLUMNS - 1, ROWS - 1, GREY)
                 actual_time = time()
-                def_path(path_start, actual_time, 0.05)
-                def_path(path_ending, actual_time, 0.05, 1)
+                def_path(path_start, actual_time)
+                def_path(path_ending, actual_time, base=3)
                 start_mob = True
+            if event.dict['text'] == '&' and not joueur.bouclier:
+                joueur.start_bouclier()
             moving_in_the_graph(joueur, event.dict['text'], region)
             # draw_wall([joueur.column, joueur.row], screen, graph)
             if region[(joueur.column, joueur.row)][-1] == 1:
                 print("case d'arrivée atteinte !")
+                go_on = False
+            if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
+                print("Vous êtes mort")
                 go_on = False
             if LEVEL >= 2:
                 for neighbor in neighbors(joueur.column, joueur.row):
@@ -119,8 +125,13 @@ while go_on:
         if len(path_ending):
             refresh_ending(time())
         if not (len(path_start) or len(path_ending)):
-            start_mob = False
-            actual_time = 0
+            if time() > actual_time + 45:
+                start_mob = False
+                actual_time = 0
+            else:
+                print(f"Cooldown bave : {(actual_time + 45) - time()}")
+    if joueur.bouclier_end != 0:
+        joueur.refresh_bouclier(time())
     pygame.display.update()
 
 pygame.quit()

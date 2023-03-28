@@ -17,6 +17,9 @@ class Joueur:
         self.coor = [0.0, 0.0]
         self.define_coor()
 
+        self.bouclier = False
+        self.bouclier_end = 0
+
     def update(self, dir: str, region):
         """
         Permet un mouvement
@@ -54,4 +57,21 @@ class Joueur:
         """
         Défini les coordonnées x et y du joueur
         """
-        self.coor = [self.column * 50 + 10, self.row * 50 + 4]
+        self.coor = [self.column * 50 + 10, self.row * 50 + 5]
+
+    def start_bouclier(self):
+        self.bouclier_end = time()+15
+        self.bouclier = True
+        self.image.fill(BLUE)
+
+    def stop_bouclier(self, time):
+        self.bouclier = False
+        self.image.fill(RED)
+        if time > self.bouclier_end+30:
+            self.bouclier_end = 0
+        else:
+            print(f"Cooldown bouclier : {self.bouclier_end+30 - time}")
+
+    def refresh_bouclier(self, time):
+        if time > self.bouclier_end:
+            self.stop_bouclier(time)
