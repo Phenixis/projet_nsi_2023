@@ -1,94 +1,26 @@
-from Labyrinthe import *
+from constants import *
 
+# --- screen ---
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
-
 screen.fill(BG)
-graph, region = main(screen, LEVEL)
-joueur = Joueur(0, 0, RED)
-mob = Joueur(COLUMNS - 1, ROWS - 1, GREY)
-joueur.update("nowhere", region)
+
+# --- valeurs ---
 start_mob = False
 go_on = True
-path_arr_dep = dfs_path(graph, (COLUMNS - 1, ROWS - 1), (0, 0))
-path_start = {}
-path_ending = {}
-actual_time = 0
+nb_monstre = 0
+region, graph = main(screen)
 
-
-def def_path(path, time, multiplicateur=0.5, base=0):
-    sec = base
-    for coor in path_arr_dep:
-        path[coor] = time + sec
-        sec += multiplicateur
-
-
-def moving_in_the_graph(player: Joueur, dir: str, region):
-    """
-    Vérifie si la direction dans laquelle va le joueur a un mur ou non
-    déplace le joueur dans la direction si possible
-    """
-    if dir == 'q' and ((player.column, player.row), (player.column - 1, player.row)) in graph.edges:
-        player.update('l', region)
-    elif dir == 'd' and (
-            (player.column, player.row), (player.column + 1, player.row)) in graph.edges:
-        player.update("r", region)
-    elif dir == 's' and (
-            (player.column, player.row), (player.column, player.row + 1)) in graph.edges:
-        player.update("d", region)
-    elif dir == 'z' and (
-            (player.column, player.row), (player.column, player.row - 1)) in graph.edges:
-        player.update("u", region)
-
-
-def def_dir(coor_dep, coor_arr):
-    x_dep, y_dep = coor_dep
-    x_arr, y_arr = coor_arr
-    if (x_dep - x_arr) == -1:
-        return 'd'
-    elif (x_dep - x_arr) == 1:
-        return 'q'
-    elif (y_dep - y_arr) == -1:
-        return 's'
-    elif (y_dep - y_arr) == 1:
-        return 'z'
-    else:
-        print(f"error : {x_dep-x_arr=} et {y_dep-y_arr=}")
-        return ''
-
-
-def refresh_start(time, mob: Joueur):
-    """
-    vérifie pour la première valeur de path si son temps d'éxecution est atteint
-    si oui, déplace le mob sur les coordonnées et supprime la première valeur de `path`
-    """
-    global path_start
-    coor_mob0, next_coor0 = list(path_start.keys())[:2]
-    if len(path_start) >= 3:
-        if len(path_start) and time >= path_start[coor_mob0]:
-            moving_in_the_graph(mob, def_dir(coor_mob0, next_coor0), region)
-            region[next_coor0][2] = True
-            path_start.pop(coor_mob0)
-    else:
-        moving_in_the_graph(mob, def_dir(coor_mob0, next_coor0), region)
-        path_start.clear()
-
-
-def refresh_ending(time):
-    """
-        vérifie pour la première valeur de path si son temps d'éxecution est atteint
-        si oui, déplace le mob sur les coordonnées et supprime la première valeur de `path`
-    """
-    global path_ending
-    coor_mob, next_coor = list(path_ending.keys())[:2]
-    if len(path_ending) >= 3:
-        if len(path_ending) and time >= path_ending[coor_mob]:
-            region[next_coor][2] = False
-            path_ending.pop(coor_mob)
-    else:
-        region[coor_mob][2] = False
-        region[next_coor][2] = False
-        path_ending.clear()
+# --- joueurs ---
+joueur = Joueur(0, 0, RED)
+joueur.update("nowhere", region)
+monstres = [0, 0, 0]
+mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
+mob1_path = Monstre(mob1, graph)
+mob2 = Joueur(0, ROWS - 1, GREY)
+mob2_path = Monstre(mob2, graph)
+mob3 = Joueur(COLUMNS - 1, 0, GREY)
+mob3_path = Monstre(mob3, graph)
 
 
 while go_on:
@@ -97,41 +29,90 @@ while go_on:
         if "key" in event.dict and event.dict['key'] == 27:
             go_on = False
         if "text" in event.dict.keys():
-            if event.dict['text'] == 'e' and actual_time == 0:
-                mob = Joueur(COLUMNS - 1, ROWS - 1, GREY)
-                actual_time = time()
-                def_path(path_start, actual_time)
-                def_path(path_ending, actual_time, base=3)
-                start_mob = True
-            if event.dict['text'] == '&' and not joueur.bouclier:
+            if event.dict['text'] == 'm' and nb_monstre < 3:
+                nb_monstre += 1
+                if monstres[0] == 0:
+                    mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
+                    mob1_path = Monstre(mob1, graph)
+                    monstres[0] = 1
+                elif monstres[1] == 0:
+                    mob2 = Joueur(0, ROWS - 1, GREY)
+                    mob2_path = Monstre(mob2, graph)
+                    monstres[1] = 1
+                elif monstres[2] == 0:
+                    mob3 = Joueur(COLUMNS - 1, 0, GREY)
+                    mob3_path = Monstre(mob3, graph)
+                    monstres[2] = 1
+
+            if event.dict['text'] == '&' and joueur.bouclier_end == 0:
                 joueur.start_bouclier()
-            moving_in_the_graph(joueur, event.dict['text'], region)
-            # draw_wall([joueur.column, joueur.row], screen, graph)
-            if region[(joueur.column, joueur.row)][-1] == 1:
-                print("case d'arrivée atteinte !")
-                go_on = False
-            if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
-                print("Vous êtes mort")
-                go_on = False
-            if LEVEL >= 2:
-                for neighbor in neighbors(joueur.column, joueur.row):
-                    draw_wall(neighbor, screen, graph, region)
+
+            if event.dict['text'] == 'é' and joueur.cross_mur_end == 0:
+                joueur.start_cross_mur()
+
+            moving_in_the_graph(joueur, event.dict['text'], graph, region)
+
+    if region[(joueur.column, joueur.row)][-1] == 1:
+        print("case d'arrivée atteinte !")
+        go_on = False
+
+    if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
+        print("Vous êtes mort")
+        go_on = False
+
+    if LEVEL == 2:
+        draw_case((joueur.column, joueur.row), screen, graph, region)
+        draw_wall((joueur.column, joueur.row), screen, graph)
+        if nb_monstre >= 1:
+            draw_case((mob1.column, mob1.row), screen, graph, region)
+            draw_wall((mob1.column, mob1.row), screen, graph)
+        if nb_monstre >= 2:
+            draw_case((mob2.column, mob2.row), screen, graph, region)
+            draw_wall((mob2.column, mob2.row), screen, graph)
+        if nb_monstre >= 3:
+            draw_case((mob3.column, mob3.row), screen, graph, region)
+            draw_wall((mob3.column, mob3.row), screen, graph)
+
     draw_lab(screen, graph, region)
     screen.blit(joueur.image, joueur.coor)
-    if start_mob:
-        if len(path_start):
-            refresh_start(time(), mob)
-            screen.blit(mob.image, mob.coor)
-        if len(path_ending):
-            refresh_ending(time())
-        if not (len(path_start) or len(path_ending)):
-            if time() > actual_time + 60:
-                start_mob = False
-                actual_time = 0
-            else:
-                print(f"Cooldown bave : {(actual_time + 45) - time()}")
+
+    if monstres[0] == 1:
+        if len(mob1_path.path_start):
+            mob1_path.refresh_start(time(), graph, region)
+            screen.blit(mob1_path.mob.image, mob1_path.mob.coor)
+        if len(mob1_path.path_ending):
+            mob1_path.refresh_ending(time(), region)
+        if not (len(mob1_path.path_start) or len(mob1_path.path_ending)):
+            if time() > mob1_path.time + CD_MOB:
+                nb_monstre -= 1
+                mob1_path.time = 0
+                monstres[0] = 0
+    if monstres[1] == 1:
+        if len(mob2_path.path_start):
+            mob2_path.refresh_start(time(), graph, region)
+            screen.blit(mob2_path.mob.image, mob2_path.mob.coor)
+        if len(mob2_path.path_ending):
+            mob2_path.refresh_ending(time(), region)
+        if not (len(mob2_path.path_start) or len(mob2_path.path_ending)):
+            if time() > mob2_path.time + CD_MOB:
+                nb_monstre -= 1
+                mob2_path.time = 0
+                monstres[1] = 0
+    if monstres[2] == 1:
+        if len(mob3_path.path_start):
+            mob3_path.refresh_start(time(), graph, region)
+            screen.blit(mob3_path.mob.image, mob3_path.mob.coor)
+        if len(mob3_path.path_ending):
+            mob3_path.refresh_ending(time(), region)
+        if not (len(mob3_path.path_start) or len(mob3_path.path_ending)):
+            if time() > mob3_path.time + CD_MOB:
+                nb_monstre -= 1
+                mob3_path.time = 0
+                monstres[2] = 0
     if joueur.bouclier_end != 0:
         joueur.refresh_bouclier(time())
+    if joueur.cross_mur_end != 0:
+        joueur.refresh_cross_mur(time())
     pygame.display.update()
 
 pygame.quit()

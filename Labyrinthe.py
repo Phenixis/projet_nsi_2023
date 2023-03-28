@@ -1,7 +1,7 @@
-from constants import *
-import networkx as nx
+from constants_dir.values import *
+from constants_dir.modules import *
+
 from random import choice
-from Joueur import *
 
 
 def neighbors(x: int, y: int) -> list:
@@ -43,7 +43,7 @@ def draw_lab(surface, g, region):
     for x in range(COLUMNS):
         for y in range(ROWS):
             if region[x, y][1]:
-                draw_wall((x, y), surface, g, region)
+                draw_wall((x, y), surface, g)
                 draw_case((x, y), surface, g, region)
 
 
@@ -55,14 +55,14 @@ def draw_case(coor, surface, graphe, region):
     length = SIZE - 7  # if (x, y + 1) in graphe.neighbors((x, y)) else SIZE - 2
 
     if region[(x, y)][2]:  # case qui tue
-        pygame.draw.rect(surface, GREEN, pygame.Rect(left, top, width, length))
+        pygame.draw.rect(surface, DARK_GREEN, pygame.Rect(left, top, width, length))
     else:
         pygame.draw.rect(surface, WHITE, pygame.Rect(x * SIZE + 2, y * SIZE + 2, SIZE - 2, SIZE - 2))
     if region[(x, y)][-1]:  # case d'arrivée
         pygame.draw.rect(surface, YELLOW, pygame.Rect(left, top, width, length))
 
 
-def draw_wall(coor, surface, g, region):
+def draw_wall(coor, surface, g):
     """
     Dessine les murs autour d'une case si elle a été visitée
     """
@@ -86,7 +86,7 @@ def fill_region(level):
     i = 0
     for y in range(ROWS):
         for x in range(COLUMNS):
-            region[(x, y)] = [i, False if level == 2 else True, 0, 0]
+            region[(x, y)] = [i, False if level >= 2 else True, 0, 0]
             """
             [nb unique pour création lab, case visible, case qui tue ou non, case d'arrivée ou non]
             """
@@ -116,43 +116,13 @@ def define_graph(region):
     return g
 
 
-def main(surface, level):
+def main(surface):
     """
     Rempli region, defini le graphe selon region
     Dessine le labyrinthe
     Renvoie le graphe
     """
-    region = fill_region(level)
-    graphe = define_graph(region)
-    # for case in dfs_path(graphe, (0, 0), (COLUMNS-1, ROWS-1)):
-    #     region[case][2] = 1
-    draw_lab(surface, graphe, region)
-    return graphe, region
-
-
-def dfs_path(g: nx.Graph, start, end) -> list:
-    result = []
-    pred = dict()
-    pred[start] = None
-    stack = []
-    remaining = list(g.nodes)
-    stack.append(start)
-    remaining.remove(start)
-    found = False
-    current = None
-    while stack and not found:
-        current = stack.pop()
-        if current == end:
-            found = True
-        for n in g.neighbors(current):
-            if n in remaining:
-                stack.append(n)
-                if n not in pred:
-                    pred[n] = current
-                remaining.remove(n)
-    if found:
-        while current:
-            result = [current] + result
-            current = pred[current]
-        return result
-    return []
+    region = fill_region(LEVEL)
+    graph = define_graph(region)
+    draw_lab(surface, graph, region)
+    return region, graph
