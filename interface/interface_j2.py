@@ -5,6 +5,16 @@ pygame.init()
 
 font = pygame.font.Font("Maze.ttf", 80)
 titre_MAZE = font.render("MAZE", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_monster = font.render("MONSTER", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_button1 = font.render("BUTTON", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_button2 = font.render("BUTTON", False, 'white')
+
+
+
+
 
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
@@ -59,4 +69,8 @@ while boutons_go_on:
     pygame.draw.rect(screen, WHITE, (0, 0, 1200, 800))
     pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
     screen.blit(titre_MAZE, (1235, 50))
+    screen.blit(text_monster,(1257,207))
+    screen.blit(text_button1, (1269, 357))
+    screen.blit(text_button2, (1269, 507))
+    screen.blit(text_button2, (1269, 657))
     pygame.display.flip()
