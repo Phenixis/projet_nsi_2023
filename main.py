@@ -49,10 +49,10 @@ text_monster = font.render("MONSTER", False, 'white')
 text_button1 = font.render("BUTTON", False, 'white')
 text_button2 = font.render("BUTTON", False, 'white')
 text_button3 = font.render("BUTTON", False, 'white')
-text_button5 = font.render("SHIELD", False, 'white')
-text_button6 = font.render("CROSS", False, 'white')
-text_button7 = font.render("CPT 3", False, 'white')
-text_button8 = font.render("CPT 4", False, 'white')
+text_button5 = font.render("SHIELD----[1]", False, 'white')
+text_button6 = font.render("CROSS-----[2]", False, 'white')
+text_button7 = font.render("CPT 3------[3]", False, 'white')
+text_button8 = font.render("CPT 4------[4]", False, 'white')
 list_text = [(titre_MAZE, (1235, 50)), (text_monster, (1257, 207)), (text_button1, (1269, 357)),
              (text_button2, (1269, 507)), (text_button3, (1269, 657)), (text_button5, (103, 830)),
              (text_button6, (403, 830)), (text_button7, (703, 830)), (text_button8, (1003, 830))]
