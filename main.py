@@ -31,8 +31,16 @@ BOUTON_3 = pygame.Rect(1245, 500, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_3)
 BOUTON_4 = pygame.Rect(1245, 650, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_4)
+BOUTON_5 = pygame.Rect(75, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_5)
+BOUTON_6 = pygame.Rect(375, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_6)
+BOUTON_7 = pygame.Rect(675, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_7)
+BOUTON_8 = pygame.Rect(975, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_8)
 list_buttons = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
-
+list_buttons_j1 = [BOUTON_5, BOUTON_6, BOUTON_7, BOUTON_8]
 # --- font ---
 font = pygame.font.Font("interface/Maze.ttf", 80)
 titre_MAZE = font.render("MAZE", False, 'white')
@@ -41,9 +49,13 @@ text_monster = font.render("MONSTER", False, 'white')
 text_button1 = font.render("BUTTON", False, 'white')
 text_button2 = font.render("BUTTON", False, 'white')
 text_button3 = font.render("BUTTON", False, 'white')
+text_button5 = font.render("SHIELD", False, 'white')
+text_button6 = font.render("CROSS", False, 'white')
+text_button7 = font.render("CPT 3", False, 'white')
+text_button8 = font.render("CPT 4", False, 'white')
 list_text = [(titre_MAZE, (1235, 50)), (text_monster, (1257, 207)), (text_button1, (1269, 357)),
-             (text_button2, (1269, 507)),
-             (text_button3, (1269, 657))]
+             (text_button2, (1269, 507)), (text_button3, (1269, 657)), (text_button5, (103, 830)),
+             (text_button6, (403, 830)), (text_button7, (703, 830)), (text_button8, (1003, 830))]
 
 
 # --- fonction ---
@@ -155,6 +167,7 @@ while go_on:
         joueur.refresh_bouclier(time())
     if joueur.cross_mur_end != 0:
         joueur.refresh_cross_mur(time())
+
     for button in list_buttons:
         if button[0].collidepoint(pygame.mouse.get_pos()):
             button[1] = BLACK
@@ -168,6 +181,10 @@ while go_on:
     for element in list_text:
         screen.blit(element[0], element[1])
     pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
+    pygame.draw.rect(screen, WHITE, (5, 810, 1195, 80), 10, 5)
+    pygame.draw.rect(screen, WHITE, (1220, 810, 200, 80), 10, 5)
+    for element in list_buttons_j1:
+        pygame.draw.rect(screen, WHITE, element, 5)
     pygame.display.update()
 
 pygame.quit()
