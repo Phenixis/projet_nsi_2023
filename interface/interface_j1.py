@@ -19,18 +19,18 @@ text_bt2 = font.render("CROSS", False, 'white')
 text_bt3 = font.render("CPT 3", False, 'white')
 text_bt4 = font.render("CPT 4", False, 'white')
 
-BOUTON_1 = pygame.Rect(20, 825, 150, 50)
+BOUTON_5 = pygame.Rect(20, 825, 150, 50)
 
-pygame.draw.rect(screen, BG, BOUTON_1)
+pygame.draw.rect(screen, BG, BOUTON_5)
 
-BOUTON_2 = pygame.Rect(320, 825, 150, 50)
-pygame.draw.rect(screen, BG, BOUTON_2)
+BOUTON_6 = pygame.Rect(320, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_6)
 
-BOUTON_3 = pygame.Rect(620, 825, 150, 50)
-pygame.draw.rect(screen, BG, BOUTON_3)
+BOUTON_7 = pygame.Rect(620, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_7)
 
-BOUTON_4 = pygame.Rect(920, 825, 150, 50)
-pygame.draw.rect(screen, BG, BOUTON_4)
+BOUTON_8 = pygame.Rect(920, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_8)
 lb = []
 lb.append([BOUTON_1, WHITE])
 lb.append([BOUTON_2, WHITE])
