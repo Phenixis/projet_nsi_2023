@@ -34,9 +34,9 @@ pygame.draw.rect(screen, BG, BOUTON_4)
 list_buttons = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
 
 # --- font ---
-font = pygame.font.Font("Maze.ttf", 80)
+font = pygame.font.Font("interface/Maze.ttf", 80)
 titre_MAZE = font.render("MAZE", False, 'white')
-font = pygame.font.Font("Maze.ttf", 35)
+font = pygame.font.Font("interface/Maze.ttf", 35)
 text_monster = font.render("MONSTER", False, 'white')
 text_button1 = font.render("BUTTON", False, 'white')
 text_button2 = font.render("BUTTON", False, 'white')
