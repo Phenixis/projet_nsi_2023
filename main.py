@@ -12,24 +12,24 @@ nb_monstre = 0
 region, graph = main(screen)
 
 # --- joueurs ---
-joueur = Joueur(0, 0, RED)
+joueur = Joueur(0, 0, RED) # joueur 1
 joueur.update("nowhere", region)
-monstres = [0, 0, 0]
-mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
+monstres = [0, 0, 0] # 0 : monstre inactif, 1 : monstres actif
+mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY) # bas-droite -> haut-gauche
 mob1_path = Monstre(mob1, graph)
-mob2 = Joueur(0, ROWS - 1, GREY)
+mob2 = Joueur(0, ROWS - 1, GREY) # bas-gauche -> haut-gauche
 mob2_path = Monstre(mob2, graph)
-mob3 = Joueur(COLUMNS - 1, 0, GREY)
+mob3 = Joueur(COLUMNS - 1, 0, GREY) # haut-droite -> haut-gauche
 mob3_path = Monstre(mob3, graph)
 
 # --- bouttons ---
-BOUTON_1 = pygame.Rect(1245, 200, 150, 50)
+BOUTON_1 = pygame.Rect(1245, 200, 150, 50) # J2 : Comp Monstre
 pygame.draw.rect(screen, BG, BOUTON_1)
-BOUTON_2 = pygame.Rect(1245, 350, 150, 50)
+BOUTON_2 = pygame.Rect(1245, 350, 150, 50) # J2 : Comp 2
 pygame.draw.rect(screen, BG, BOUTON_2)
-BOUTON_3 = pygame.Rect(1245, 500, 150, 50)
+BOUTON_3 = pygame.Rect(1245, 500, 150, 50) # J2 : Comp 3
 pygame.draw.rect(screen, BG, BOUTON_3)
-BOUTON_4 = pygame.Rect(1245, 650, 150, 50)
+BOUTON_4 = pygame.Rect(1245, 650, 150, 50) # J2 : Comp 4
 pygame.draw.rect(screen, BG, BOUTON_4)
 BOUTON_5 = pygame.Rect(75, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_5)
