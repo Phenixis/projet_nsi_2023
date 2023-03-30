@@ -32,10 +32,10 @@ pygame.draw.rect(screen, BG, BOUTON_7)
 BOUTON_8 = pygame.Rect(920, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_8)
 lb = []
-lb.append([BOUTON_1, WHITE])
-lb.append([BOUTON_2, WHITE])
-lb.append([BOUTON_3, WHITE])
-lb.append([BOUTON_4, WHITE])
+lb.append([BOUTON_5, WHITE])
+lb.append([BOUTON_6, WHITE])
+lb.append([BOUTON_7, WHITE])
+lb.append([BOUTON_8, WHITE])
 
 
 # -------- Main Program Loop -----------
