@@ -3,24 +3,22 @@ from constants import *
 
 pygame.init()
 
-SCREEN_WIDTH, SCREEN_WEIGHT = 1450, 840
-
-NOIR = (0)
-BLANC = pygame.Color("#ffffff")
-VERT = pygame.Color("#0e6f46")
-BLEU = pygame.Color("#213035")
-MARRON = pygame.Color("#774633")
-PURPLE = (100, 0, 100)
-
-font = pygame.font.Font("MAZE.ttf",80)
-
-text_surf = font.render("MAZE", False, 'white')
+font = pygame.font.Font("Maze.ttf", 80)
+titre_MAZE = font.render("MAZE", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_monster = font.render("MONSTER", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_button1 = font.render("BUTTON", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_button2 = font.render("BUTTON", False, 'white')
 
 
 
-screen = pygame.display.set_mode((1450, 840), pygame.FULLSCREEN)
+
+
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 screen.fill(BG)
-go_on = True
 
 BOUTON_1 = pygame.Rect(1245, 200, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_1)
@@ -34,16 +32,12 @@ pygame.draw.rect(screen, BG, BOUTON_3)
 BOUTON_4 = pygame.Rect(1245, 650, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_4)
 
-lb = []
-lb.append([BOUTON_1, BLANC])
-lb.append([BOUTON_2, BLANC])
-lb.append([BOUTON_4, BLANC])
-lb.append([BOUTON_3, BLANC])
+list_buttons = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
 
 boutons_go_on = True
-while boutons_go_on == True:
+while boutons_go_on:
     for event in pygame.event.get():
-        if "key" in event.dict and event.dict['key'] == 27:
+        if "key" in event.dict and event.dict['key'] == 27: # le numéro 27 renvoie à esc
             boutons_go_on = False
 
         elif BOUTON_1.collidepoint(pygame.mouse.get_pos()):
@@ -62,17 +56,21 @@ while boutons_go_on == True:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 boutons_go_on = False
 
-    for b in lb:
-        if b[0].collidepoint(pygame.mouse.get_pos()):
-            b[1] = NOIR
+    for button in list_buttons:
+        if button[0].collidepoint(pygame.mouse.get_pos()):
+            button[1] = BLACK
             break
         else:
-            b[1] = BLANC
+            button[1] = WHITE
 
-    for (button, color) in lb:
+    for (button, color) in list_buttons:
         pygame.draw.rect(screen, color, button, 5)
 
-    pygame.draw.rect(screen, BLANC, (0, 0, 1200, 800))
-    pygame.draw.rect(screen, BLANC, (1220, 0, 200, 800), 10, 5)
-    screen.blit(text_surf,(1235,50))
+    pygame.draw.rect(screen, WHITE, (0, 0, 1200, 800))
+    pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
+    screen.blit(titre_MAZE, (1235, 50))
+    screen.blit(text_monster,(1257,207))
+    screen.blit(text_button1, (1269, 357))
+    screen.blit(text_button2, (1269, 507))
+    screen.blit(text_button2, (1269, 657))
     pygame.display.flip()
