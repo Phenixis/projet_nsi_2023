@@ -33,27 +33,59 @@ BOUTON_4 = pygame.Rect(1245, 650, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_4)
 list_buttons = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
 
+# --- font ---
+font = pygame.font.Font("Maze.ttf", 80)
+titre_MAZE = font.render("MAZE", False, 'white')
+font = pygame.font.Font("Maze.ttf", 35)
+text_monster = font.render("MONSTER", False, 'white')
+text_button1 = font.render("BUTTON", False, 'white')
+text_button2 = font.render("BUTTON", False, 'white')
+text_button3 = font.render("BUTTON", False, 'white')
+list_text = [(titre_MAZE, (1235, 50)), (text_monster, (1257, 207)), (text_button1, (1269, 357)),
+             (text_button2, (1269, 507)),
+             (text_button3, (1269, 657))]
+
+
+# --- fonction ---
+def init_monstre(nb_monstre, monstres, graph):
+    global mob1, mob1_path, mob2, mob2_path, mob3, mob3_path
+    if event.type == pygame.MOUSEBUTTONDOWN and nb_monstre < 3:
+        nb_monstre += 1
+        if monstres[0] == 0:
+            mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
+            mob1_path = Monstre(mob1, graph)
+            monstres[0] = 1
+        elif monstres[1] == 0:
+            mob2 = Joueur(0, ROWS - 1, GREY)
+            mob2_path = Monstre(mob2, graph)
+            monstres[1] = 1
+        elif monstres[2] == 0:
+            mob3 = Joueur(COLUMNS - 1, 0, GREY)
+            mob3_path = Monstre(mob3, graph)
+            monstres[2] = 1
+
+
 while go_on:
     pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
     for event in pygame.event.get():
         if "key" in event.dict and event.dict['key'] == 27:
             go_on = False
-        if "text" in event.dict.keys():
-            if event.dict['text'] == 'm' and nb_monstre < 3:
-                nb_monstre += 1
-                if monstres[0] == 0:
-                    mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
-                    mob1_path = Monstre(mob1, graph)
-                    monstres[0] = 1
-                elif monstres[1] == 0:
-                    mob2 = Joueur(0, ROWS - 1, GREY)
-                    mob2_path = Monstre(mob2, graph)
-                    monstres[1] = 1
-                elif monstres[2] == 0:
-                    mob3 = Joueur(COLUMNS - 1, 0, GREY)
-                    mob3_path = Monstre(mob3, graph)
-                    monstres[2] = 1
+        elif BOUTON_1.collidepoint(pygame.mouse.get_pos()):
+            if event.type == pygame.MOUSEBUTTONDOWN and nb_monstre < 3:
+                init_monstre(nb_monstre, monstres, graph)
 
+        elif BOUTON_2.collidepoint(pygame.mouse.get_pos()):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                boutons_go_on = False
+
+        elif BOUTON_3.collidepoint(pygame.mouse.get_pos()):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                boutons_go_on = False
+
+        elif BOUTON_4.collidepoint(pygame.mouse.get_pos()):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                boutons_go_on = False
+        if "text" in event.dict.keys():
             if event.dict['text'] == '&' and joueur.bouclier_end == 0:
                 joueur.start_bouclier()
 
@@ -123,6 +155,19 @@ while go_on:
         joueur.refresh_bouclier(time())
     if joueur.cross_mur_end != 0:
         joueur.refresh_cross_mur(time())
+    for button in list_buttons:
+        if button[0].collidepoint(pygame.mouse.get_pos()):
+            button[1] = BLACK
+            break
+        else:
+            button[1] = WHITE
+
+    for (button, color) in list_buttons:
+        pygame.draw.rect(screen, color, button, 5)
+
+    for element in list_text:
+        screen.blit(element[0], element[1])
+    pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
     pygame.display.update()
 
 pygame.quit()
