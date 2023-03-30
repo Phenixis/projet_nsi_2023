@@ -14,6 +14,15 @@ text_button2 = font.render("BUTTON", False, 'white')
 
 
 
+def blit(screen):
+    pygame.draw.rect(screen, WHITE, (0, 0, 1200, 800))
+    pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
+    screen.blit(titre_MAZE, (1235, 50))
+    screen.blit(text_monster, (1257, 207))
+    screen.blit(text_button1, (1269, 357))
+    screen.blit(text_button2, (1269, 507))
+    screen.blit(text_button2, (1269, 657))
+
 
 
 
@@ -66,11 +75,5 @@ while boutons_go_on:
     for (button, color) in list_buttons:
         pygame.draw.rect(screen, color, button, 5)
 
-    pygame.draw.rect(screen, WHITE, (0, 0, 1200, 800))
-    pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
-    screen.blit(titre_MAZE, (1235, 50))
-    screen.blit(text_monster,(1257,207))
-    screen.blit(text_button1, (1269, 357))
-    screen.blit(text_button2, (1269, 507))
-    screen.blit(text_button2, (1269, 657))
+    blit(screen)
     pygame.display.flip()

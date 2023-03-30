@@ -22,6 +22,16 @@ mob2_path = Monstre(mob2, graph)
 mob3 = Joueur(COLUMNS - 1, 0, GREY)
 mob3_path = Monstre(mob3, graph)
 
+# --- bouttons ---
+BOUTON_1 = pygame.Rect(1245, 200, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_1)
+BOUTON_2 = pygame.Rect(1245, 350, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_2)
+BOUTON_3 = pygame.Rect(1245, 500, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_3)
+BOUTON_4 = pygame.Rect(1245, 650, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_4)
+list_buttons = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
 
 while go_on:
     pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
