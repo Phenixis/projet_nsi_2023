@@ -1,24 +1,42 @@
 import pygame
 
+from constants_dir.values import BG
+from constants_dir.values import *
+
 pygame.init()
 
-WHITE = (255, 255, 255)
-GREY = (20, 20, 20)
-BLACK = (0, 0, 0)
-PURPLE = (100, 0, 100)
-RED = (255, 0, 0)
 
-size = (850, 850)
-screen = pygame.display.set_mode(size)
+
+size = (1450, 840)
+screen = pygame.display.set_mode((size), pygame.FULLSCREEN)
 screen.fill(GREY)
 
 done = False
 
-bouton_comp1 = pygame.Rect(1000, 255, 244, 31)
-pygame.draw.rect(screen, WHITE, bouton_comp1)
+font = pygame.font.Font("MAZE.ttf",45)
+text_bt1 = font.render("SHIELD", False, 'white')
+text_bt2 = font.render("CROSS", False, 'white')
+text_bt3 = font.render("CPT 3", False, 'white')
+text_bt4 = font.render("CPT 4", False, 'white')
 
+BOUTON_1 = pygame.Rect(20, 825, 150, 50)
+
+pygame.draw.rect(screen, BG, BOUTON_1)
+
+BOUTON_2 = pygame.Rect(320, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_2)
+
+BOUTON_3 = pygame.Rect(620, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_3)
+
+BOUTON_4 = pygame.Rect(920, 825, 150, 50)
+pygame.draw.rect(screen, BG, BOUTON_4)
 lb = []
-lb.append([bouton_comp1, WHITE])
+lb.append([BOUTON_1, WHITE])
+lb.append([BOUTON_2, WHITE])
+lb.append([BOUTON_3, WHITE])
+lb.append([BOUTON_4, WHITE])
+
 
 # -------- Main Program Loop -----------
 go_on = True
@@ -48,7 +66,12 @@ while go_on:
     for (button, color) in lb:
         pygame.draw.rect(screen, color, button, 5)
         pygame.display.update()
-    pygame.draw.rect(screen, WHITE, (0, 0, 100, 100))
+    pygame.draw.rect(screen, WHITE, (0, 0, 1200, 800))
+    pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
+    screen.blit(text_bt1, (37, 825))
+    screen.blit(text_bt2, (337, 825))
+    screen.blit(text_bt3, (637, 825))
+    screen.blit(text_bt4, (937, 825))
     pygame.display.flip()
 
 pygame.quit()
