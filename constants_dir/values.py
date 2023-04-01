@@ -25,7 +25,7 @@ WALL_COLOR = PURPLE
 BG = BLACK
 
 # Valeur constante
-LEVEL = 1  # int(input("À quel niveau voulez-vous jouer ? "))
+LEVEL = 3  # int(input("À quel niveau voulez-vous jouer ? "))
 CD_MOB = 20
 CD_SHIELD = 5
 CD_CROSS_MUR = 60
