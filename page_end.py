@@ -33,6 +33,7 @@ while go_on:
         elif BOUTON_REJOUER.collidepoint(pygame.mouse.get_pos()):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 app()
+                pygame.quit()
 
         elif BOUTON_QUITTER.collidepoint(pygame.mouse.get_pos()):
             if event.type == pygame.MOUSEBUTTONDOWN:

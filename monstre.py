@@ -4,12 +4,8 @@ from constants_dir.values import *
 
 class Monstre:
 
-    def __init__(self, mob_associe, graph):
-        self.mob = mob_associe
-        self.time = time()
-        self.path = dfs_path(graph, (self.mob.column, self.mob.row), (0, 0))
-        self.path_start = self.def_path()
-        self.path_ending = self.def_path(base=1)
+    def __init__(self, mob_associe, graph, tps):
+        self.init(mob_associe, graph, tps)
 
     def def_path(self, mult_tps=0.1, base=0):
         res = {}
@@ -42,3 +38,13 @@ class Monstre:
             region[coor_mob][2] = False
             region[next_coor][2] = False
             self.path_ending.clear()
+
+    def __repr__(self):
+        return str(self.time)
+
+    def init(self, mob_associe, graph, tps):
+        self.mob = mob_associe
+        self.time = tps
+        self.path = dfs_path(graph, (self.mob.column, self.mob.row), (0, 0))
+        self.path_start = self.def_path()
+        self.path_ending = self.def_path(base=1)

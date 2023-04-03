@@ -98,8 +98,6 @@ class Joueur:
         self.bouclier = False
         if time > self.bouclier_end + CD_SHIELD:
             self.bouclier_end = 0
-        else:
-            print(f"Cooldown bouclier : {self.bouclier_end + CD_SHIELD - time}")
 
     def refresh_bouclier(self, time):
         if time > self.bouclier_end:
@@ -116,8 +114,6 @@ class Joueur:
         self.cross_mur = False
         if time > (self.cross_mur_end + CD_CROSS_MUR):
             self.cross_mur_end = 0
-        else:
-            print(f"Cooldown crossing walls : {self.cross_mur_end + CD_CROSS_MUR - time}")
 
     def refresh_cross_mur(self, time):
         if time > self.cross_mur_end:
@@ -134,9 +130,10 @@ class Joueur:
         self.immobile = False
         if time > (self.immobile_end + CD_IMMOBILE):
             self.immobile_end = 0
-        else:
-            print(f"Cooldown immobile : {self.immobile_end + CD_IMMOBILE - time}")
 
     def refresh_immobile(self, time):
         if time > self.immobile_end:
             self.stop_immobile(time)
+
+    def __repr(self):
+        return str(self.coor)

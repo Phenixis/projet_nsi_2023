@@ -13,17 +13,20 @@ def app():
     nb_monstre = 0
     region, graph = main(screen)
     time_0 = -1
+    J2 = False
 
     # --- joueurs ---
     joueur = Joueur(0, 0, RED)  # joueur 1
     joueur.update("nowhere", region)
     monstres = [0, 0, 0]  # 0 : monstre inactif, 1 : monstres actif
-    mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)  # bas-droite -> haut-gauche
-    mob1_path = Monstre(mob1, graph)
-    mob2 = Joueur(0, ROWS - 1, GREY)  # bas-gauche -> haut-gauche
-    mob2_path = Monstre(mob2, graph)
-    mob3 = Joueur(COLUMNS - 1, 0, GREY)  # haut-droite -> haut-gauche
-    mob3_path = Monstre(mob3, graph)
+    mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
+    mob1_path = Monstre(mob1, graph, time())
+    mob2 = Joueur(0, ROWS - 1, GREY)
+    mob2_path = Monstre(mob2, graph, time())
+    mob3 = Joueur(COLUMNS - 1, 0, GREY)
+    mob3_path = Monstre(mob3, graph, time())
+    print(mob1_path, mob2_path, mob3_path)
+    print("******")
 
     # --- boutons ---
     BOUTON_1 = pygame.Rect(WIDTH - 175, 200, 150, 50)  # J2 : Comp Monstre
@@ -65,22 +68,24 @@ def app():
                  (text_button8, (((COLUMNS * SIZE) - 5) / 4 + 715, HEIGHT - 70))]
 
     # --- fonction ---
-    def init_monstre(nb_monstre, monstres, graph):
-        global mob1, mob1_path, mob2, mob2_path, mob3, mob3_path
-        if event.type == pygame.MOUSEBUTTONDOWN and nb_monstre < 3:
-            nb_monstre += 1
-            if monstres[0] == 0:
-                mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
-                mob1_path = Monstre(mob1, graph)
-                monstres[0] = 1
-            elif monstres[1] == 0:
-                mob2 = Joueur(0, ROWS - 1, GREY)
-                mob2_path = Monstre(mob2, graph)
-                monstres[1] = 1
-            elif monstres[2] == 0:
-                mob3 = Joueur(COLUMNS - 1, 0, GREY)
-                mob3_path = Monstre(mob3, graph)
-                monstres[2] = 1
+    def init_monstre(nb_monstre, monstres, graph, mob1, mob1_path, mob2, mob2_path, mob3, mob3_path):
+        nb_monstre += 1
+        if monstres[0] == 0:
+            mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
+            mob1_path.init(mob1, graph, time())
+            print(time(), mob1_path)
+            monstres[0] = 1
+        elif monstres[1] == 0:
+            mob2 = Joueur(0, ROWS - 1, GREY)
+            mob2_path.init(mob2, graph, time())
+            print(time(), mob2_path)
+            monstres[1] = 1
+        elif monstres[2] == 0:
+            mob3 = Joueur(COLUMNS - 1, 0, GREY)
+            mob3_path.init(mob3, graph, time())
+            print(time(), mob1_path)
+            monstres[2] = 1
+        return mob1, mob1_path, mob2, mob2_path, mob3, mob3_path
 
     def compteur():
         actual_time = int(time())
@@ -95,6 +100,16 @@ def app():
         pygame.draw.rect(screen, BLACK, (WIDTH - 180, HEIGHT - 80, 160, 60))
         screen.blit(text, (WIDTH - 164, HEIGHT - 80))
 
+    def end_game(winner):
+        print(str(int(time() - time_0)) + "secs")
+        with open("parties.txt", "a", encoding="utf-8") as f:
+            date = dt.datetime.now()
+            f.write(f"\n{date.day}:{date.month}:{date.year} - "
+                    f"{date.hour}h{date.minute}min{date.second}secs = "
+                    f"{str(time() - time_0)}secs, "
+                    f"mod=J1{'&J2' if J2 else ''}, "
+                    f"winner={winner}")
+
     while go_on:
         pygame.draw.rect(screen, WHITE, pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
         for event in pygame.event.get():
@@ -104,10 +119,14 @@ def app():
             # Fonctionnement boutons souris J2
             elif BOUTON_1.collidepoint(pygame.mouse.get_pos()):
                 if event.type == pygame.MOUSEBUTTONDOWN and nb_monstre < 3:
-                    init_monstre(nb_monstre, monstres, graph)
+                    J2 = True
+                    mob1, mob1_path, mob2, mob2_path, mob3, mob3_path = init_monstre(nb_monstre, monstres, graph, mob1,
+                                                                                     mob1_path, mob2, mob2_path, mob3,
+                                                                                     mob3_path)
 
             elif BOUTON_2.collidepoint(pygame.mouse.get_pos()):
                 if event.type == pygame.MOUSEBUTTONDOWN and joueur.immobile_end == 0 and not joueur.bouclier:
+                    J2 = True
                     joueur.start_immobile()
 
             elif BOUTON_3.collidepoint(pygame.mouse.get_pos()):
@@ -134,18 +153,13 @@ def app():
 
         if region[(joueur.column, joueur.row)][-1] == 1:
             print("case d'arrivée atteinte !")
-            print(str(int(time() - time_0)) + "secs")
-            with open("parties.txt", "a", encoding="utf-8") as f:
-                tps = time()
-                date = dt.datetime.now()
-                f.write(f"\n{date.day}:{date.month}:{date.year} - "
-                        f"{date.hour}h{date.minute}min{date.second}secs = "
-                        f"{str(time() - time_0)}secs")
-            sleep(0.5)
+            end_game("J1")
+            # sleep(0.5)
             go_on = False
 
         if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
             print("Vous êtes mort")
+            end_game("J2")
             go_on = False
 
         if LEVEL == 2:
@@ -175,6 +189,7 @@ def app():
                     nb_monstre -= 1
                     mob1_path.time = 0
                     monstres[0] = 0
+
         if monstres[1] == 1:
             if len(mob2_path.path_start):
                 mob2_path.refresh_start(time(), graph, region)
@@ -186,6 +201,7 @@ def app():
                     nb_monstre -= 1
                     mob2_path.time = 0
                     monstres[1] = 0
+
         if monstres[2] == 1:
             if len(mob3_path.path_start):
                 mob3_path.refresh_start(time(), graph, region)
@@ -198,12 +214,13 @@ def app():
                     mob3_path.time = 0
                     monstres[2] = 0
 
-        if joueur.bouclier_end != 0:
-            joueur.refresh_bouclier(time())
-        if joueur.cross_mur_end != 0:
-            joueur.refresh_cross_mur(time())
-        if joueur.immobile_end != 0:
-            joueur.refresh_immobile(time())
+        if time_0 != -1:
+            if joueur.bouclier_end != 0:
+                joueur.refresh_bouclier(time())
+            if joueur.cross_mur_end != 0:
+                joueur.refresh_cross_mur(time())
+            if joueur.immobile_end != 0:
+                joueur.refresh_immobile(time())
 
         for button in list_buttons_j2:
             if button[0].collidepoint(pygame.mouse.get_pos()):
@@ -227,4 +244,3 @@ def app():
 
         compteur()
         pygame.display.update()
-
