@@ -35,7 +35,7 @@ def def_dir(coor_dep, coor_arr):
     elif (y_dep - y_arr) == 1:
         return 'z'
     else:
-        print(f"error : {x_dep-x_arr} et {y_dep-y_arr}")
+        print(f"error : x_dep-x_arr={x_dep-x_arr} et y_dep-y_arr={y_dep-y_arr}")
         return ''
 
 
