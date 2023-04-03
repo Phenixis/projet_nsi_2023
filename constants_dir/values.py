@@ -1,8 +1,10 @@
 from win32api import GetSystemMetrics
+from constants_dir.modules import *
 
 # Taille utiles
 WIDTH = GetSystemMetrics(0)
 HEIGHT = GetSystemMetrics(1)
+# print(WIDTH, HEIGHT)
 SIZE = 50  # taille d'une case
 COLUMNS = (WIDTH // SIZE) - 4  # nombre de colonnes
 ROWS = (HEIGHT // SIZE) - 2  # nombre de lignes
@@ -29,3 +31,9 @@ LEVEL = 3  # int(input("À quel niveau voulez-vous jouer ? "))
 CD_MOB = 20
 CD_SHIELD = 5
 CD_CROSS_MUR = 60
+CD_IMMOBILE = 60
+
+# Espaces d'affichage
+rect_comp_J1 = pygame.Rect(5, HEIGHT - 90, (COLUMNS * SIZE) - 5, 80)
+rect_comp_J2 = pygame.Rect(WIDTH - 190, 0, 180, 800)
+rect_chrono = pygame.Rect(WIDTH - 190, HEIGHT - 90, 180, 80)

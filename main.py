@@ -12,50 +12,54 @@ nb_monstre = 0
 region, graph = main(screen)
 
 # --- joueurs ---
-joueur = Joueur(0, 0, RED) # joueur 1
+joueur = Joueur(0, 0, RED)  # joueur 1
 joueur.update("nowhere", region)
-monstres = [0, 0, 0] # 0 : monstre inactif, 1 : monstres actif
-mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY) # bas-droite -> haut-gauche
+monstres = [0, 0, 0]  # 0 : monstre inactif, 1 : monstres actif
+mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)  # bas-droite -> haut-gauche
 mob1_path = Monstre(mob1, graph)
-mob2 = Joueur(0, ROWS - 1, GREY) # bas-gauche -> haut-gauche
+mob2 = Joueur(0, ROWS - 1, GREY)  # bas-gauche -> haut-gauche
 mob2_path = Monstre(mob2, graph)
-mob3 = Joueur(COLUMNS - 1, 0, GREY) # haut-droite -> haut-gauche
+mob3 = Joueur(COLUMNS - 1, 0, GREY)  # haut-droite -> haut-gauche
 mob3_path = Monstre(mob3, graph)
 
 # --- bouttons ---
-BOUTON_1 = pygame.Rect(1245, 200, 150, 50) # J2 : Comp Monstre
+BOUTON_1 = pygame.Rect(WIDTH - 175, 200, 150, 50)  # J2 : Comp Monstre
+BOUTON_2 = pygame.Rect(WIDTH - 175, 350, 150, 50)  # J2 : Comp Immobilisation
+BOUTON_3 = pygame.Rect(WIDTH - 175, 500, 150, 50)  # J2 : Comp 3
+BOUTON_4 = pygame.Rect(WIDTH - 175, 650, 150, 50)  # J2 : Comp 4
+BOUTON_5 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 - 195, 825, 150, 50)
+BOUTON_6 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 105, 825, 150, 50)
+BOUTON_7 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 405, 825, 150, 50)
+BOUTON_8 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 705, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_1)
-BOUTON_2 = pygame.Rect(1245, 350, 150, 50) # J2 : Comp 2
 pygame.draw.rect(screen, BG, BOUTON_2)
-BOUTON_3 = pygame.Rect(1245, 500, 150, 50) # J2 : Comp 3
 pygame.draw.rect(screen, BG, BOUTON_3)
-BOUTON_4 = pygame.Rect(1245, 650, 150, 50) # J2 : Comp 4
 pygame.draw.rect(screen, BG, BOUTON_4)
-BOUTON_5 = pygame.Rect(75, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_5)
-BOUTON_6 = pygame.Rect(375, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_6)
-BOUTON_7 = pygame.Rect(675, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_7)
-BOUTON_8 = pygame.Rect(975, 825, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_8)
-list_buttons = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
+list_buttons_j2 = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
 list_buttons_j1 = [BOUTON_5, BOUTON_6, BOUTON_7, BOUTON_8]
 # --- font ---
-font = pygame.font.Font("interface/Maze.ttf", 80)
+font = pygame.font.Font("interface/Maze.ttf", 71)
 titre_MAZE = font.render("MAZE", False, 'white')
 font = pygame.font.Font("interface/Maze.ttf", 35)
-text_monster = font.render("MONSTER", False, 'white')
-text_button1 = font.render("BUTTON", False, 'white')
-text_button2 = font.render("BUTTON", False, 'white')
-text_button3 = font.render("BUTTON", False, 'white')
-text_button5 = font.render("SHIELD----[1]", False, 'white')
-text_button6 = font.render("CROSS-----[2]", False, 'white')
-text_button7 = font.render("CPT 3------[3]", False, 'white')
-text_button8 = font.render("CPT 4------[4]", False, 'white')
-list_text = [(titre_MAZE, (1235, 50)), (text_monster, (1257, 207)), (text_button1, (1269, 357)),
-             (text_button2, (1269, 507)), (text_button3, (1269, 657)), (text_button5, (103, 830)),
-             (text_button6, (403, 830)), (text_button7, (703, 830)), (text_button8, (1003, 830))]
+text_button_monster = font.render("MONSTER", False, 'white')
+text_button1 = font.render("STUNT", False, 'white')
+text_button2 = font.render("BUTTON 3", False, 'white')
+text_button3 = font.render("BUTTON 4", False, 'white')
+text_button5 = font.render("SHIELD------[1]", False, 'white')
+text_button6 = font.render("CROSS-------[2]", False, 'white')
+text_button7 = font.render("CPT 3--------[3]", False, 'white')
+text_button8 = font.render("CPT 4--------[4]", False, 'white')
+list_text = [(titre_MAZE, (WIDTH - 177, 25)), (text_button_monster, (WIDTH - 165, 207)),
+             (text_button1, (WIDTH - 165, 357)),
+             (text_button2, (WIDTH - 165, 507)), (text_button3, (WIDTH - 165, 657)),
+             (text_button5, (((COLUMNS * SIZE) - 5) / 4 - 185, HEIGHT - 70)),
+             (text_button6, (((COLUMNS * SIZE) - 5) / 4 + 115, HEIGHT - 70)),
+             (text_button7, (((COLUMNS * SIZE) - 5) / 4 + 415, HEIGHT - 70)),
+             (text_button8, (((COLUMNS * SIZE) - 5) / 4 + 715, HEIGHT - 70))]
 
 
 # --- fonction ---
@@ -168,23 +172,26 @@ while go_on:
     if joueur.cross_mur_end != 0:
         joueur.refresh_cross_mur(time())
 
-    for button in list_buttons:
+    for button in list_buttons_j2:
         if button[0].collidepoint(pygame.mouse.get_pos()):
             button[1] = BLACK
             break
         else:
             button[1] = WHITE
 
-    for (button, color) in list_buttons:
-        pygame.draw.rect(screen, color, button, 5)
+    pygame.draw.rect(screen, WHITE, rect_comp_J1, 10, 5)
+    pygame.draw.rect(screen, WHITE, rect_comp_J2, 10, 5)
+    pygame.draw.rect(screen, WHITE, rect_chrono, 10, 5)
 
     for element in list_text:
         screen.blit(element[0], element[1])
-    pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
-    pygame.draw.rect(screen, WHITE, (5, 810, 1195, 80), 10, 5)
-    pygame.draw.rect(screen, WHITE, (1220, 810, 200, 80), 10, 5)
+
     for element in list_buttons_j1:
         pygame.draw.rect(screen, WHITE, element, 5)
+
+    for (button, color) in list_buttons_j2:
+        pygame.draw.rect(screen, color, button, 5)
+
     pygame.display.update()
 
 pygame.quit()

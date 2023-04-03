@@ -26,6 +26,9 @@ class Joueur:
         self.cross_mur = False
         self.cross_mur_end = 0
 
+        self.immobile = False
+        self.immobile_end = 0
+
     def verify_dir(self, dir, region):
         column, row = 0, 0
         if dir == "r":
@@ -115,3 +118,20 @@ class Joueur:
     def refresh_cross_mur(self, time):
         if time > self.cross_mur_end:
             self.stop_cross_mur(time)
+
+    def start_immobile(self, time):
+        self.immobile_end = time() + 1.5
+        self.immobile = True
+        self.image.fill(GREY)
+
+    def stop_immobile(self, time):
+        self.immobile = False
+        self.image.fill(RED)
+        if time > (self.immobile_end + CD_IMMOBILE):
+            self.immobile_end = 0
+        else:
+            print(f"Cooldown immobile : {self.immobile_end + CD_IMMOBILE - time}")
+
+    def refresh_immobile(self, time):
+        if time > self.immobile_end:
+            self.stop_immobile(time)
