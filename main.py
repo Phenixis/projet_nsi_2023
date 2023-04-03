@@ -137,7 +137,8 @@ while go_on:
             date = dt.datetime.now()
             f.write(f"\n{date.day}:{date.month}:{date.year} - "
                     f"{date.hour}h{date.minute}min{date.second}secs = "
-                    f"{str(int(time()-time_0))}secs")
+                    f"{str(time()-time_0)}secs")
+        sleep(0.5)
         go_on = False
 
     if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
