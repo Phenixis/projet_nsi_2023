@@ -1,7 +1,7 @@
 from constants_dir.values import *
 
 from Labyrinthe import *
-from time import time
+from time import time, sleep
 
 
 def moving_in_the_graph(player, dir, graph, region):
@@ -65,12 +65,3 @@ def dfs_path(g, start, end) -> list:
             current = pred[current]
         return result
     return []
-
-# def blit(screen):
-#     pygame.draw.rect(screen, WHITE, (0, 0, 1200, 800))
-#     pygame.draw.rect(screen, WHITE, (1220, 0, 200, 800), 10, 5)
-#     screen.blit(titre_MAZE, (1235, 50))
-#     screen.blit(text_monster, (1257, 207))
-#     screen.blit(text_button1, (1269, 357))
-#     screen.blit(text_button2, (1269, 507))
-#     screen.blit(text_button2, (1269, 657))

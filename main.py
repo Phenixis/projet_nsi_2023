@@ -10,6 +10,7 @@ start_mob = False
 go_on = True
 nb_monstre = 0
 region, graph = main(screen)
+time_0 = int(time())
 
 # --- joueurs ---
 joueur = Joueur(0, 0, RED)  # joueur 1
@@ -22,15 +23,15 @@ mob2_path = Monstre(mob2, graph)
 mob3 = Joueur(COLUMNS - 1, 0, GREY)  # haut-droite -> haut-gauche
 mob3_path = Monstre(mob3, graph)
 
-# --- bouttons ---
+# --- boutons ---
 BOUTON_1 = pygame.Rect(WIDTH - 175, 200, 150, 50)  # J2 : Comp Monstre
 BOUTON_2 = pygame.Rect(WIDTH - 175, 350, 150, 50)  # J2 : Comp Immobilisation
 BOUTON_3 = pygame.Rect(WIDTH - 175, 500, 150, 50)  # J2 : Comp 3
 BOUTON_4 = pygame.Rect(WIDTH - 175, 650, 150, 50)  # J2 : Comp 4
-BOUTON_5 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 - 195, 825, 150, 50)
-BOUTON_6 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 105, 825, 150, 50)
-BOUTON_7 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 405, 825, 150, 50)
-BOUTON_8 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 705, 825, 150, 50)
+BOUTON_5 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 - 195, HEIGHT - 75, 150, 50)
+BOUTON_6 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 105, HEIGHT - 75, 150, 50)
+BOUTON_7 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 405, HEIGHT - 75, 150, 50)
+BOUTON_8 = pygame.Rect(((COLUMNS * SIZE) - 5) / 4 + 705, HEIGHT - 75, 150, 50)
 pygame.draw.rect(screen, BG, BOUTON_1)
 pygame.draw.rect(screen, BG, BOUTON_2)
 pygame.draw.rect(screen, BG, BOUTON_3)
@@ -81,8 +82,22 @@ def init_monstre(nb_monstre, monstres, graph):
             monstres[2] = 1
 
 
+def compteur():
+    actual_time = int(time())
+    time_secs = actual_time - time_0
+    sexe = str(time_secs % 60)
+    if int(sexe) < 10:
+        sexe = '0' + sexe
+    min = str(time_secs // 60)
+    if int(min) < 10:
+        min = '0' + min
+    text = pygame.font.Font("interface/Maze.ttf", 60).render(min + ":" + sexe, False, 'white')
+    pygame.draw.rect(screen, BLACK, (WIDTH - 180, HEIGHT - 80, 160, 60))
+    screen.blit(text, (WIDTH - 164, HEIGHT - 80))
+
+
 while go_on:
-    pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
+    pygame.draw.rect(screen, WHITE, pygame.Rect(joueur.coor[0], joueur.coor[1], joueur.width, joueur.height))
     for event in pygame.event.get():
         if "key" in event.dict and event.dict['key'] == 27:
             go_on = False
@@ -110,11 +125,19 @@ while go_on:
 
             if event.dict['text'] == 'é' and joueur.cross_mur_end == 0 and not joueur.immobile:
                 joueur.start_cross_mur()
-
+            if joueur.slower:
+                sleep(0.2)
             moving_in_the_graph(joueur, event.dict['text'], graph, region)
 
     if region[(joueur.column, joueur.row)][-1] == 1:
         print("case d'arrivée atteinte !")
+        print(str(int(time()-time_0)) + "secs")
+        with open("parties.txt", "a", encoding="utf-8") as f:
+            tps = time()
+            date = dt.datetime.now()
+            f.write(f"\n{date.day}:{date.month}:{date.year} - "
+                    f"{date.hour}h{date.minute}min{date.second}secs = "
+                    f"{str(int(time()-time_0))}secs")
         go_on = False
 
     if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
@@ -198,6 +221,7 @@ while go_on:
     for (button, color) in list_buttons_j2:
         pygame.draw.rect(screen, color, button, 5)
 
+    compteur()
     pygame.display.update()
 
 pygame.quit()

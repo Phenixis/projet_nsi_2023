@@ -29,6 +29,8 @@ class Joueur:
         self.immobile = False
         self.immobile_end = 0
 
+        self.slower = False
+
     def verify_dir(self, dir, region):
         column, row = 0, 0
         if dir == "r":
@@ -91,8 +93,9 @@ class Joueur:
         self.image.fill(BLUE)
 
     def stop_bouclier(self, time):
+        if self.bouclier:
+            self.image.fill(RED)
         self.bouclier = False
-        self.image.fill(RED)
         if time > self.bouclier_end + CD_SHIELD:
             self.bouclier_end = 0
         else:
@@ -108,8 +111,9 @@ class Joueur:
         self.image.fill(GREEN)
 
     def stop_cross_mur(self, time):
+        if self.cross_mur:
+            self.image.fill(RED)
         self.cross_mur = False
-        self.image.fill(RED)
         if time > (self.cross_mur_end + CD_CROSS_MUR):
             self.cross_mur_end = 0
         else:
@@ -125,8 +129,9 @@ class Joueur:
         self.image.fill(GREY)
 
     def stop_immobile(self, time):
+        if self.immobile:
+            self.image.fill(RED)
         self.immobile = False
-        self.image.fill(RED)
         if time > (self.immobile_end + CD_IMMOBILE):
             self.immobile_end = 0
         else:

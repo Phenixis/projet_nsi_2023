@@ -12,16 +12,16 @@ NB_CASES = COLUMNS * ROWS
 
 # Couleur
 WHITE = (255, 255, 255)
-GREY = (20, 20, 20)
+GREY = (20, 20, 20)  # stunt
 BLACK = (0, 0, 0)
-PURPLE = (100, 0, 100)
-RED = (255, 0, 0)
-GREEN = (0, 200, 0)
-DARK_GREEN = (0, 102, 0)
+PURPLE = (100, 0, 100)  # slow_motion
+RED = (255, 0, 0)  # état normal
+GREEN = (0, 200, 0)  # cross
+DARK_GREEN = (0, 102, 0)  # case qui tue
 YELLOW = (255, 204, 0)
-BLUE = (0, 0, 255)
+BLUE = (0, 0, 255)  # shield
 DARK_BLUE = (33, 48, 53)
-GREEN_BJ = (14, 111, 70)
+GREEN_BJ = (14, 111, 70)  # couleur background blackjack
 BROWN = (119, 70, 51)
 WALL_COLOR = PURPLE
 BG = BLACK
@@ -35,5 +35,5 @@ CD_IMMOBILE = 60
 
 # Espaces d'affichage
 rect_comp_J1 = pygame.Rect(5, HEIGHT - 90, (COLUMNS * SIZE) - 5, 80)
-rect_comp_J2 = pygame.Rect(WIDTH - 190, 0, 180, 800)
+rect_comp_J2 = pygame.Rect(WIDTH - 190, 0, 180, HEIGHT - 100)
 rect_chrono = pygame.Rect(WIDTH - 190, HEIGHT - 90, 180, 80)
