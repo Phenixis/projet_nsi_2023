@@ -86,7 +86,7 @@ class Joueur:
         self.coor = [self.column * 50 + 10, self.row * 50 + 5]
 
     def start_bouclier(self):
-        self.bouclier_end = time() + 10
+        self.bouclier_end = time() + 3
         self.bouclier = True
         self.image.fill(BLUE)
 

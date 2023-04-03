@@ -79,7 +79,7 @@ def draw_wall(coor, surface, g):
 
 def fill_region(level):
     """
-    Rempli un dictionnaire nommé "region" des cases du labyrinthe avec une valeur de plus en plus grande
+    Rempli un dictionnaire nommé "region" des cases du labyrinthe avec une valeur différente pour chaque case
     Utile pour créer le graphe plus tard
     """
     region = {}

@@ -24,7 +24,7 @@ J2 :
         Fermer porte -> plein de portes qui se ferme, bouton à appuyer pour annuler
         (Murs invisibles -> murs invisibles)
         Rocket dirigeable -> 10s
-	potion immobilisation
+	    potion immobilisation
 
 Plusieurs niveaux :
     2 1ers niveaux : J1 doit sortir du labyrinthe, il doit ne pas mourir par les pièges du J2
