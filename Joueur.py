@@ -119,7 +119,7 @@ class Joueur:
         if time > self.cross_mur_end:
             self.stop_cross_mur(time)
 
-    def start_immobile(self, time):
+    def start_immobile(self):
         self.immobile_end = time() + 1.5
         self.immobile = True
         self.image.fill(GREY)

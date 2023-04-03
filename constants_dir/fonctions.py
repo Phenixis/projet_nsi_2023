@@ -10,16 +10,16 @@ def moving_in_the_graph(player, dir, graph, region):
     déplace le joueur dans la direction si possible
     """
     if dir == 'q' and ((
-    (player.column, player.row), (player.column - 1, player.row)) in graph.edges or player.cross_mur):
+    (player.column, player.row), (player.column - 1, player.row)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update('l', region)
     elif dir == 'd' and ((
-            (player.column, player.row), (player.column + 1, player.row)) in graph.edges or player.cross_mur):
+            (player.column, player.row), (player.column + 1, player.row)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("r", region)
     elif dir == 's' and ((
-            (player.column, player.row), (player.column, player.row + 1)) in graph.edges or player.cross_mur):
+            (player.column, player.row), (player.column, player.row + 1)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("d", region)
     elif dir == 'z' and ((
-            (player.column, player.row), (player.column, player.row - 1)) in graph.edges or player.cross_mur):
+            (player.column, player.row), (player.column, player.row - 1)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("u", region)
 
 

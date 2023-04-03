@@ -86,13 +86,15 @@ while go_on:
     for event in pygame.event.get():
         if "key" in event.dict and event.dict['key'] == 27:
             go_on = False
+
+        # Fonctionnement boutons souris J2
         elif BOUTON_1.collidepoint(pygame.mouse.get_pos()):
             if event.type == pygame.MOUSEBUTTONDOWN and nb_monstre < 3:
                 init_monstre(nb_monstre, monstres, graph)
 
         elif BOUTON_2.collidepoint(pygame.mouse.get_pos()):
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                boutons_go_on = False
+            if event.type == pygame.MOUSEBUTTONDOWN and joueur.immobile_end == 0 and not joueur.bouclier:
+                joueur.start_immobile()
 
         elif BOUTON_3.collidepoint(pygame.mouse.get_pos()):
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -101,11 +103,12 @@ while go_on:
         elif BOUTON_4.collidepoint(pygame.mouse.get_pos()):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 boutons_go_on = False
+
         if "text" in event.dict.keys():
-            if event.dict['text'] == '&' and joueur.bouclier_end == 0:
+            if event.dict['text'] == '&' and joueur.bouclier_end == 0 and not joueur.immobile:
                 joueur.start_bouclier()
 
-            if event.dict['text'] == 'é' and joueur.cross_mur_end == 0:
+            if event.dict['text'] == 'é' and joueur.cross_mur_end == 0 and not joueur.immobile:
                 joueur.start_cross_mur()
 
             moving_in_the_graph(joueur, event.dict['text'], graph, region)
@@ -167,10 +170,13 @@ while go_on:
                 nb_monstre -= 1
                 mob3_path.time = 0
                 monstres[2] = 0
+
     if joueur.bouclier_end != 0:
         joueur.refresh_bouclier(time())
     if joueur.cross_mur_end != 0:
         joueur.refresh_cross_mur(time())
+    if joueur.immobile_end != 0:
+        joueur.refresh_immobile(time())
 
     for button in list_buttons_j2:
         if button[0].collidepoint(pygame.mouse.get_pos()):
