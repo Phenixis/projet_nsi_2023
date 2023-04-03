@@ -116,13 +116,13 @@ def define_graph(region):
     return g
 
 
-def main(surface):
+def main(surface, level):
     """
     Rempli region, defini le graphe selon region
     Dessine le labyrinthe
     Renvoie le graphe
     """
-    region = fill_region(LEVEL)
+    region = fill_region(level)
     graph = define_graph(region)
     draw_lab(surface, graph, region)
     return region, graph

@@ -4,23 +4,23 @@ from Labyrinthe import *
 from time import time, sleep
 
 
-def moving_in_the_graph(player, dir, graph, region):
+def moving_in_the_graph(player, dir, graph, region, level):
     """
     Vérifie si la direction dans laquelle va le joueur a un mur ou non
     déplace le joueur dans la direction si possible
     """
     if dir == 'q' and ((
     (player.column, player.row), (player.column - 1, player.row)) in graph.edges or player.cross_mur) and not player.immobile:
-        player.update('l', region)
+        player.update('l', region, level)
     elif dir == 'd' and ((
             (player.column, player.row), (player.column + 1, player.row)) in graph.edges or player.cross_mur) and not player.immobile:
-        player.update("r", region)
+        player.update("r", region, level)
     elif dir == 's' and ((
             (player.column, player.row), (player.column, player.row + 1)) in graph.edges or player.cross_mur) and not player.immobile:
-        player.update("d", region)
+        player.update("d", region, level)
     elif dir == 'z' and ((
             (player.column, player.row), (player.column, player.row - 1)) in graph.edges or player.cross_mur) and not player.immobile:
-        player.update("u", region)
+        player.update("u", region, level)
 
 
 def def_dir(coor_dep, coor_arr):

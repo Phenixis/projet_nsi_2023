@@ -15,15 +15,15 @@ class Monstre:
             sec += mult_tps
         return res
 
-    def refresh_start(self, time, graph, region):
+    def refresh_start(self, time, graph, region, level):
         coor_mob, next_coor = list(self.path_start.keys())[:2]
         if len(self.path_start) >= 3:
             if len(self.path_start) and time >= self.path_start[coor_mob]:
-                moving_in_the_graph(self.mob, def_dir(coor_mob, next_coor), graph, region)
+                moving_in_the_graph(self.mob, def_dir(coor_mob, next_coor), graph, region, level)
                 region[next_coor][2] = True
                 self.path_start.pop(coor_mob)
         else:
-            moving_in_the_graph(self.mob, def_dir(coor_mob, next_coor), graph, region)
+            moving_in_the_graph(self.mob, def_dir(coor_mob, next_coor), graph, region, level)
             region[next_coor][2] = True
             self.path_start.clear()
 

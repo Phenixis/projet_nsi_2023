@@ -44,7 +44,7 @@ class Joueur:
 
         return (column, row) in region
 
-    def update(self, dir: str, region):
+    def update(self, dir: str, region, level):
         """
         Permet un mouvement
         "r" correspond à "right"
@@ -53,7 +53,7 @@ class Joueur:
         "d" correspond à "down"
         """
         if self.verify_dir(dir, region):
-            if LEVEL == 3:
+            if level == 3:
                 for case in region.keys():
                     nghs = neighbors(self.column, self.row)
                     if case in nghs:
@@ -70,7 +70,7 @@ class Joueur:
             self.define_coor()
 
             region[self.column, self.row][1] = True
-            if LEVEL == 3:
+            if level == 3:
                 for case in region.keys():
                     nghs = neighbors(self.column, self.row)
                     if case in nghs:

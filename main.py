@@ -1,7 +1,8 @@
 from constants import *
+from rejoue import *
 
 
-def app():
+def app(level : int):
     # --- screen ---
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
@@ -11,13 +12,13 @@ def app():
     start_mob = False
     go_on = True
     nb_monstre = 0
-    region, graph = main(screen)
+    region, graph = main(screen, level)
     time_0 = -1
     J2 = False
 
     # --- joueurs ---
     joueur = Joueur(0, 0, RED)  # joueur 1
-    joueur.update("nowhere", region)
+    joueur.update("nowhere", region, level)
     monstres = [0, 0, 0]  # 0 : monstre inactif, 1 : monstres actif
     mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
     mob1_path = Monstre(mob1, graph, time())
@@ -25,8 +26,6 @@ def app():
     mob2_path = Monstre(mob2, graph, time())
     mob3 = Joueur(COLUMNS - 1, 0, GREY)
     mob3_path = Monstre(mob3, graph, time())
-    print(mob1_path, mob2_path, mob3_path)
-    print("******")
 
     # --- boutons ---
     BOUTON_1 = pygame.Rect(WIDTH - 175, 200, 150, 50)  # J2 : Comp Monstre
@@ -73,17 +72,14 @@ def app():
         if monstres[0] == 0:
             mob1 = Joueur(COLUMNS - 1, ROWS - 1, GREY)
             mob1_path.init(mob1, graph, time())
-            print(time(), mob1_path)
             monstres[0] = 1
         elif monstres[1] == 0:
             mob2 = Joueur(0, ROWS - 1, GREY)
             mob2_path.init(mob2, graph, time())
-            print(time(), mob2_path)
             monstres[1] = 1
         elif monstres[2] == 0:
             mob3 = Joueur(COLUMNS - 1, 0, GREY)
             mob3_path.init(mob3, graph, time())
-            print(time(), mob1_path)
             monstres[2] = 1
         return mob1, mob1_path, mob2, mob2_path, mob3, mob3_path
 
@@ -149,7 +145,7 @@ def app():
 
                 if time_0 == -1:
                     time_0 = time()
-                moving_in_the_graph(joueur, event.dict['text'], graph, region)
+                moving_in_the_graph(joueur, event.dict['text'], graph, region, level)
 
         if region[(joueur.column, joueur.row)][-1] == 1:
             print("case d'arrivée atteinte !")
@@ -162,7 +158,7 @@ def app():
             end_game("J2")
             go_on = False
 
-        if LEVEL == 2:
+        if level == 2:
             draw_case((joueur.column, joueur.row), screen, graph, region)
             draw_wall((joueur.column, joueur.row), screen, graph)
             if nb_monstre >= 1:
@@ -180,7 +176,7 @@ def app():
 
         if monstres[0] == 1:
             if len(mob1_path.path_start):
-                mob1_path.refresh_start(time(), graph, region)
+                mob1_path.refresh_start(time(), graph, region, level)
                 screen.blit(mob1_path.mob.image, mob1_path.mob.coor)
             if len(mob1_path.path_ending):
                 mob1_path.refresh_ending(time(), region)
@@ -192,7 +188,7 @@ def app():
 
         if monstres[1] == 1:
             if len(mob2_path.path_start):
-                mob2_path.refresh_start(time(), graph, region)
+                mob2_path.refresh_start(time(), graph, region, level)
                 screen.blit(mob2_path.mob.image, mob2_path.mob.coor)
             if len(mob2_path.path_ending):
                 mob2_path.refresh_ending(time(), region)
@@ -204,7 +200,7 @@ def app():
 
         if monstres[2] == 1:
             if len(mob3_path.path_start):
-                mob3_path.refresh_start(time(), graph, region)
+                mob3_path.refresh_start(time(), graph, region, level)
                 screen.blit(mob3_path.mob.image, mob3_path.mob.coor)
             if len(mob3_path.path_ending):
                 mob3_path.refresh_ending(time(), region)
@@ -244,3 +240,4 @@ def app():
 
         compteur()
         pygame.display.update()
+    return rejoue()
