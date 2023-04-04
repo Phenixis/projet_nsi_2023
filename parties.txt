@@ -15,3 +15,5 @@
 4:4:2023 - 0h9min6secs = 42.25914978981018secs, mod=J1&J2, winner=J1
 4:4:2023 - 0h17min28secs = 7.726433038711548secs, mod=J1&J2, winner=J2
 4:4:2023 - 0h17min49secs = 9.639626502990723secs, mod=J1&J2, winner=J2
+4:4:2023 - 0h20min42secs = 8.9596426486969secs, mod=J1&J2, winner=J2
+4:4:2023 - 0h21min11secs = 1680560472.8656974secs, mod=J1&J2, winner=J2
