@@ -13,11 +13,11 @@ def joue():
     pygame.draw.rect(screen, BG, BOUTON_MUSIQUE_2)
     BOUTON_MUSIQUE_3 = pygame.Rect(WIDTH - 1150, HEIGHT - 200, 90, 50)
     pygame.draw.rect(screen, BG, BOUTON_MUSIQUE_3)
-    BOUTON_LOUDER = pygame.Rect(WIDTH - 1000, HEIGHT - 200, 120, 50)
+    BOUTON_LOUDER = pygame.Rect(WIDTH - 700, HEIGHT - 200, 120, 50)
     pygame.draw.rect(screen, BG, BOUTON_LOUDER)
     BOUTON_QUIETER = pygame.Rect(WIDTH - 850, HEIGHT - 200, 120, 50)
     pygame.draw.rect(screen, BG, BOUTON_QUIETER)
-    BOUTON_MUTE = pygame.Rect(WIDTH - 700, HEIGHT - 200, 120, 50)
+    BOUTON_MUTE = pygame.Rect(WIDTH - 1000, HEIGHT - 200, 120, 50)
     pygame.draw.rect(screen, BG, BOUTON_MUTE)
 
     # ---play music---
