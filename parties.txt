@@ -1,34 +1,4 @@
-3:4:2023 - 22h55min19secs = 8.827911138534546secs, mod=J1, winner=J1
-3:4:2023 - 23h4min5secs = 8.588099479675293secs, mod=J1&J2, winner=J2
-3:4:2023 - 23h22min41secs = 29.185791015625secs, mod=J1&J2, winner=J1
-3:4:2023 - 23h25min55secs = 30.331441402435303secs, mod=J1&J2, winner=J1
-3:4:2023 - 23h29min11secs = 17.723257541656494secs, mod=J1, winner=J1
-3:4:2023 - 23h29min31secs = 7.5205395221710205secs, mod=J1&J2, winner=J2
-3:4:2023 - 23h30min46secs = 1680557447.557719secs, mod=J1&J2, winner=J2
-3:4:2023 - 23h33min31secs = 21.148369550704956secs, mod=J1, winner=J1
-3:4:2023 - 23h35min10secs = 25.569043397903442secs, mod=J1, winner=J1
-3:4:2023 - 23h42min20secs = 23.117427110671997secs, mod=J1, winner=J1
-3:4:2023 - 23h51min24secs = 1680558685.6175177secs, mod=J1&J2, winner=J2
-3:4:2023 - 23h57min35secs = 9.271448373794556secs, mod=J1&J2, winner=J2
-3:4:2023 - 23h58min56secs = 17.99050760269165secs, mod=J1&J2, winner=J1
-3:4:2023 - 23h59min16secs = 14.432066202163696secs, mod=J1, winner=J1
-4:4:2023 - 0h9min6secs = 42.25914978981018secs, mod=J1&J2, winner=J1
-4:4:2023 - 0h17min28secs = 7.726433038711548secs, mod=J1&J2, winner=J2
-4:4:2023 - 0h17min49secs = 9.639626502990723secs, mod=J1&J2, winner=J2
-4:4:2023 - 0h20min42secs = 8.9596426486969secs, mod=J1&J2, winner=J2
-4:4:2023 - 0h21min11secs = 1680560472.8656974secs, mod=J1&J2, winner=J2
-4:4:2023 - 21h51min30secs = 53.18910837173462secs, mod=J1, winner=J1
-4:4:2023 - 21h52min28secs = 50.31168341636658secs, mod=J1, winner=J1
-4:4:2023 - 21h53min14secs = 32.63862109184265secs, mod=J1, winner=J1
-4:4:2023 - 21h54min30secs = 70.55508232116699secs, mod=J1, winner=J1
-4:4:2023 - 21h55min54secs = 57.069233417510986secs, mod=J1, winner=J1
-4:4:2023 - 21h57min32secs = 67.63524270057678secs, mod=J1&J2, winner=J1
-4:4:2023 - 22h3min45secs = 96.5700192451477secs, mod=J1, winner=J1
-5:4:2023 - 8h16min25secs = 22.860411643981934secs, mod=J1&J2, winner=J1
-5:4:2023 - 8h16min42secs = 13.874497890472412secs, mod=J1, winner=J1
-5:4:2023 - 8h24min50secs = 6.07709527015686secs, mod=J1&J2, winner=J2
-5:4:2023 - 8h25min22secs = 29.66508460044861secs, mod=J1, winner=J1
-5:4:2023 - 8h45min9secs = 13.761242866516113secs, mod=J1, level=1winner=J1
+5:4:2023 - 8h45min9secs = 13.761242866516113secs, mod=J1, level=1, winner=J1
 5:4:2023 - 8h46min10secs = 34.70517826080322secs, mod=J1, level=2, winner=J1
 5:4:2023 - 9h0min41secs = 28.894351959228516secs, mod=J1&J2, level=1, winner=J1
 5:4:2023 - 9h1min36secs = 46.9406156539917secs, mod=J1&J2, level=1, winner=J1
@@ -70,3 +40,11 @@
 5:4:2023 - 10h0min32secs = 60.94350028038025secs, mod=J1&J2, level=1, winner=J2
 5:4:2023 - 10h2min5secs = 69.0683605670929secs, mod=J1&J2, level=2, winner=J2
 5:4:2023 - 10h3min16secs = 46.5447723865509secs, mod=J1&J2, level=3, winner=J2
+5:4:2023 - 18h16min8secs = 25.037151098251343secs, mod=J1, level=1, winner=J1
+5:4:2023 - 18h27min56secs = 15.311017036437988secs, mod=J1, level=1, winner=J1
+5:4:2023 - 18h29min8secs = 38.1704843044281secs, mod=J1, level=2, winner=J1
+5:4:2023 - 18h32min47secs = 5.01400899887085secs, mod=J1&J2, level=1, winner=J2
+5:4:2023 - 18h42min19secs = 6.065299034118652secs, mod=J1&J2, level=1, winner=J2
+5:4:2023 - 9h46min42secs = 8.41253113746643secs, mod=J1, level=1, winner=J1
+5:4:2023 - 23h20min11secs = 19.018532752990723secs, mod=J1, level=1, winner=J1
+5:4:2023 - 23h20min32secs = 12.784092903137207secs, mod=J1, level=1, winner=J1

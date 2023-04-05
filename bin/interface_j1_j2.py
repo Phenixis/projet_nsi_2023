@@ -1,5 +1,4 @@
-import pygame
-from constants import *
+from constants_dir.constants import *
 
 pygame.init()
 

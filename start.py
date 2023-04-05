@@ -1,4 +1,4 @@
-from main import *
+from Scripts.main import *
 
 
 def joue():
@@ -6,6 +6,7 @@ def joue():
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
     screen.fill(BG)
+
     # ---boutons musique---
     BOUTON_MUSIQUE_1 = pygame.Rect(WIDTH - 1350, HEIGHT - 200, 90, 50)
     pygame.draw.rect(screen, BG, BOUTON_MUSIQUE_1)
@@ -20,10 +21,11 @@ def joue():
     BOUTON_MUTE = pygame.Rect(WIDTH - 1000, HEIGHT - 200, 120, 50)
     pygame.draw.rect(screen, BG, BOUTON_MUTE)
 
-    # ---play music---
+    # ---music params---
     music = None
     volume = 0.5
     mute = False
+
     # --- boutons ---
     BOUTON_LEVEL_1 = pygame.Rect(WIDTH // 10, 300, 200, 100)
     pygame.draw.rect(screen, BG, BOUTON_LEVEL_1)
@@ -34,16 +36,17 @@ def joue():
     list_boutons = [[BOUTON_LEVEL_1, WHITE], [BOUTON_LEVEL_2, WHITE], [BOUTON_LEVEL_3, WHITE],
                     [BOUTON_MUSIQUE_1, WHITE], [BOUTON_MUSIQUE_2, WHITE], [BOUTON_MUSIQUE_3, WHITE],
                     [BOUTON_LOUDER, WHITE], [BOUTON_QUIETER, WHITE], [BOUTON_MUTE, WHITE]]
+
     # --- font ---
-    font = pygame.font.Font("interface/Maze.ttf", 200)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 200)
     titre_MAZE = font.render("MAZE", False, 'white')
 
-    font = pygame.font.Font("interface/Maze.ttf", 40)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 40)
     text_button_level_1 = font.render("LEVEL 1", False, 'white')
     text_button_level_2 = font.render("LEVEL 2", False, 'white')
     text_button_level_3 = font.render("LEVEL 3", False, 'white')
 
-    font = pygame.font.Font("interface/Maze.ttf", 40)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 40)
     text_choose_music = font.render("SELECT YOUR MUSIC", False, 'white')
     text_music_1 = font.render("1", False, 'white')
     text_music_2 = font.render("2", False, 'white')
@@ -51,7 +54,7 @@ def joue():
 
     text_volume = font.render("VOLUME", False, 'white')
     text_mute = font.render("MUTE", False, 'white')
-    font = pygame.font.Font("interface/Maze.ttf", 40)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 40)
     text_louder = font.render("loud", False, 'white')
     text_quieter = font.render("quiet", False, 'white')
 
@@ -67,6 +70,10 @@ def joue():
                  (text_mute, (WIDTH - 990, HEIGHT-195)),
                  (text_quieter, (WIDTH - 840, HEIGHT-195)),
                  (text_louder, (WIDTH - 690, HEIGHT-195))]
+
+
+    # -- fastest games --
+    # J1_LVL1 = fastest_game(mod="J1", level="1", winner="J1")
 
     go_on = True
 
@@ -93,7 +100,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("no.wav")
+                    music = pygame.mixer.Sound("../bin/no.wav")
                     music.play(-1)
                     music.set_volume(0.5)
 
@@ -101,7 +108,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("no.wav")
+                    music = pygame.mixer.Sound("../bin/no.wav")
                     music.play(-1)
                     music.set_volume(0.5)
 
@@ -109,7 +116,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("no.wav")
+                    music = pygame.mixer.Sound("../bin/no.wav")
                     music.play(-1)
                     music.set_volume(0.5)
 
@@ -158,6 +165,5 @@ def jouer():
     else:
         pygame.quit()
         return ""
-
 
 jouer()

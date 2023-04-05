@@ -1,5 +1,5 @@
-from constants import *
-from rejoue import *
+from constants_dir.constants import *
+from Scripts.rejoue import *
 
 
 def app(level : int):
@@ -47,9 +47,9 @@ def app(level : int):
     list_buttons_j2 = [[BOUTON_1, WHITE], [BOUTON_2, WHITE], [BOUTON_3, WHITE], [BOUTON_4, WHITE]]
     list_buttons_j1 = [BOUTON_5, BOUTON_6, BOUTON_7, BOUTON_8]
     # --- font ---
-    font = pygame.font.Font("interface/Maze.ttf", 71)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 71)
     titre_MAZE = font.render("MAZE", False, 'white')
-    font = pygame.font.Font("interface/Maze.ttf", 35)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 35)
     text_button_monster = font.render("MONSTER", False, 'white')
     text_button1 = font.render("STUNT", False, 'white')
     text_button2 = font.render("BUTTON 3", False, 'white')
@@ -92,13 +92,13 @@ def app(level : int):
         min = str(int(time_secs // 60))
         if int(min) < 10:
             min = '0' + min
-        text = pygame.font.Font("interface/Maze.ttf", 60).render(min + ":" + sexe, False, 'white')
+        text = pygame.font.Font("./ressources/Font/Maze.ttf", 60).render(min + ":" + sexe, False, 'white')
         pygame.draw.rect(screen, BLACK, (WIDTH - 180, HEIGHT - 80, 160, 60))
         screen.blit(text, (WIDTH - 164, HEIGHT - 80))
 
     def end_game(winner, level):
         print(str(int(time() - time_0)) + "secs")
-        with open("parties.txt", "a", encoding="utf-8") as f:
+        with open("./parties.txt", "a", encoding="utf-8") as f:
             date = dt.datetime.now()
             f.write(f"\n{date.day}:{date.month}:{date.year} - "
                     f"{date.hour}h{date.minute}min{date.second}secs = "

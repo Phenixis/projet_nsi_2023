@@ -1,2 +1,2 @@
-from Joueur import Joueur
-from monstre import Monstre
+from ressources.classes.Joueur import Joueur
+from ressources.classes.monstre import Monstre

@@ -1,7 +1,6 @@
-from constants_dir.values import *
+from time import time
 
-from Labyrinthe import *
-from time import time, sleep
+from ressources.classes.Labyrinthe import *
 
 
 def moving_in_the_graph(player, dir, graph, region, level):
@@ -10,16 +9,20 @@ def moving_in_the_graph(player, dir, graph, region, level):
     déplace le joueur dans la direction si possible
     """
     if dir == 'q' and ((
-    (player.column, player.row), (player.column - 1, player.row)) in graph.edges or player.cross_mur) and not player.immobile:
+                               (player.column, player.row), (player.column - 1,
+                                                             player.row)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update('l', region, level)
     elif dir == 'd' and ((
-            (player.column, player.row), (player.column + 1, player.row)) in graph.edges or player.cross_mur) and not player.immobile:
+                                 (player.column, player.row), (player.column + 1,
+                                                               player.row)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("r", region, level)
     elif dir == 's' and ((
-            (player.column, player.row), (player.column, player.row + 1)) in graph.edges or player.cross_mur) and not player.immobile:
+                                 (player.column, player.row), (player.column,
+                                                               player.row + 1)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("d", region, level)
     elif dir == 'z' and ((
-            (player.column, player.row), (player.column, player.row - 1)) in graph.edges or player.cross_mur) and not player.immobile:
+                                 (player.column, player.row), (player.column,
+                                                               player.row - 1)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("u", region, level)
 
 
@@ -35,7 +38,7 @@ def def_dir(coor_dep, coor_arr):
     elif (y_dep - y_arr) == 1:
         return 'z'
     else:
-        print(f"error : x_dep-x_arr={x_dep-x_arr} et y_dep-y_arr={y_dep-y_arr}")
+        print(f"error : x_dep-x_arr={x_dep - x_arr} et y_dep-y_arr={y_dep - y_arr}")
         return ''
 
 
@@ -65,3 +68,17 @@ def dfs_path(g, start, end) -> list:
             current = pred[current]
         return result
     return []
+
+
+def fastest_game(mod: str, level: int, winner: str):
+    file = []
+    with open("./parties.txt", "r", encoding="utf-8") as f:
+        for row in f:
+            row = row.split(" = ")[1].split(", ")
+            row[0] = float(row[0][:-4]) # le temps
+            row[1] = row[1][4:] # mod
+            row[2] = int(row[2][-1]) # level
+            row[3] = row[3][7:-1] if '\n' in row[3][7:] else row[3][7:] # winner
+            file.append(row)
+    return min([row[0] for row in file if row[1] == mod and row[2] == level and row[3] == winner])
+

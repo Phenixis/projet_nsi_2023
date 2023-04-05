@@ -1,4 +1,4 @@
-from constants import *
+from constants_dir.constants import *
 
 def rejoue():
     # --- screen ---
@@ -16,9 +16,9 @@ def rejoue():
 
 
     # --- font ---
-    font = pygame.font.Font("interface/Maze.ttf", 200)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 200)
     titre_MAZE = font.render("MAZE", False, 'white')
-    font = pygame.font.Font("interface/Maze.ttf", 40)
+    font = pygame.font.Font("./ressources/Font/Maze.ttf", 40)
     text_button_rejouer = font.render("REJOUER", False, 'white')
     text_button_quitter = font.render("QUITTER", False, 'white')
     list_text = [(titre_MAZE, (WIDTH//2.9, 25)), (text_button_rejouer, (WIDTH // 2.2, 325)),
