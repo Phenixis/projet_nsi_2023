@@ -24,3 +24,9 @@
 4:4:2023 - 21h55min54secs = 57.069233417510986secs, mod=J1, winner=J1
 4:4:2023 - 21h57min32secs = 67.63524270057678secs, mod=J1&J2, winner=J1
 4:4:2023 - 22h3min45secs = 96.5700192451477secs, mod=J1, winner=J1
+5:4:2023 - 8h16min25secs = 22.860411643981934secs, mod=J1&J2, winner=J1
+5:4:2023 - 8h16min42secs = 13.874497890472412secs, mod=J1, winner=J1
+5:4:2023 - 8h24min50secs = 6.07709527015686secs, mod=J1&J2, winner=J2
+5:4:2023 - 8h25min22secs = 29.66508460044861secs, mod=J1, winner=J1
+5:4:2023 - 8h45min9secs = 13.761242866516113secs, mod=J1, level=1winner=J1
+5:4:2023 - 8h46min10secs = 34.70517826080322secs, mod=J1, level=2, winner=J1

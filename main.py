@@ -96,7 +96,7 @@ def app(level : int):
         pygame.draw.rect(screen, BLACK, (WIDTH - 180, HEIGHT - 80, 160, 60))
         screen.blit(text, (WIDTH - 164, HEIGHT - 80))
 
-    def end_game(winner):
+    def end_game(winner, level):
         print(str(int(time() - time_0)) + "secs")
         with open("parties.txt", "a", encoding="utf-8") as f:
             date = dt.datetime.now()
@@ -104,6 +104,7 @@ def app(level : int):
                     f"{date.hour}h{date.minute}min{date.second}secs = "
                     f"{str(time() - time_0)}secs, "
                     f"mod=J1{'&J2' if J2 else ''}, "
+                    f"level={level}, "
                     f"winner={winner}")
 
     while go_on:
@@ -149,13 +150,13 @@ def app(level : int):
 
         if region[(joueur.column, joueur.row)][-1] == 1:
             print("case d'arrivée atteinte !")
-            end_game("J1")
+            end_game("J1", level)
             # sleep(0.5)
             go_on = False
 
         if region[(joueur.column, joueur.row)][2] and not joueur.bouclier:
             print("Vous êtes mort")
-            end_game("J2")
+            end_game("J2", level)
             go_on = False
 
         if level == 2:
