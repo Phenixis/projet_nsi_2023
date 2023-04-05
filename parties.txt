@@ -39,3 +39,12 @@
 5:4:2023 - 9h5min21secs = 20.6642107963562secs, mod=J1&J2, level=2, winner=J1
 5:4:2023 - 9h19min6secs = 12.816206932067871secs, mod=J1, level=1, winner=J1
 5:4:2023 - 9h21min5secs = 26.33763813972473secs, mod=J1, level=2, winner=J1
+5:4:2023 - 9h29min55secs = 37.88011884689331secs, mod=J1, level=2, winner=J1
+5:4:2023 - 9h30min25secs = 13.063222169876099secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h31min23secs = 23.32413363456726secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h32min15secs = 33.10947060585022secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h32min40secs = 17.10032629966736secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h33min6secs = 16.02801251411438secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h37min58secs = 29.369500398635864secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h45min51secs = 16.067691326141357secs, mod=J1, level=1, winner=J1
+5:4:2023 - 9h46min42secs = 8.41253113746643secs, mod=J1, level=1, winner=J1 #meilleur score
