@@ -62,19 +62,27 @@ def joue():
                  (text_button_level_3, (WIDTH // 1.3 + 35, 325)),
                  (text_button_level_2, (WIDTH // 2.3 + 35, 325)),
                  (text_button_level_1, (WIDTH // 10 + 35, 325)),
-                 (text_choose_music, (WIDTH - 1360, HEIGHT-250)),
-                 (text_music_1, (WIDTH - 1315, HEIGHT-195)),
-                 (text_music_2, (WIDTH - 1215, HEIGHT-195)),
-                 (text_music_3, (WIDTH - 1115, HEIGHT-195)),
-                 (text_volume, (WIDTH - 850, HEIGHT-250)),
-                 (text_mute, (WIDTH - 990, HEIGHT-195)),
-                 (text_quieter, (WIDTH - 840, HEIGHT-195)),
-                 (text_louder, (WIDTH - 690, HEIGHT-195))]
-
+                 (text_choose_music, (WIDTH - 1360, HEIGHT - 250)),
+                 (text_music_1, (WIDTH - 1315, HEIGHT - 195)),
+                 (text_music_2, (WIDTH - 1215, HEIGHT - 195)),
+                 (text_music_3, (WIDTH - 1115, HEIGHT - 195)),
+                 (text_volume, (WIDTH - 850, HEIGHT - 250)),
+                 (text_mute, (WIDTH - 990, HEIGHT - 195)),
+                 (text_quieter, (WIDTH - 840, HEIGHT - 195)),
+                 (text_louder, (WIDTH - 690, HEIGHT - 195))]
 
     # -- fastest games --
-    # J1_LVL1 = fastest_game(mod="J1", level="1", winner="J1")
+    highscores = {}
+    for mod in ("J1", "J1&J2"):
+        for level in range(1, 4):
+            for winner in ("J1", "J2"):
+                score = fastest_game(mod, level, winner)
+                highscores[(mod, level, winner)] = str(
+                    round(score, 3)) + "secs" if score != -1 else "No score saved for these params"
 
+    for score in highscores.keys():
+        print(score)
+    """
     go_on = True
 
     while go_on:
@@ -155,7 +163,7 @@ def joue():
             pygame.draw.rect(screen, elt[1], elt[0], 5)
 
         pygame.display.update()
-
+        """
     return ""
 
 
@@ -166,4 +174,5 @@ def jouer():
         pygame.quit()
         return ""
 
-jouer()
+
+joue()

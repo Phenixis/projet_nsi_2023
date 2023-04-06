@@ -80,5 +80,8 @@ def fastest_game(mod: str, level: int, winner: str):
             row[2] = int(row[2][-1]) # level
             row[3] = row[3][7:-1] if '\n' in row[3][7:] else row[3][7:] # winner
             file.append(row)
-    return min([row[0] for row in file if row[1] == mod and row[2] == level and row[3] == winner])
+
+    result = [row[0] for row in file if row[1:] == [mod, level, winner]]
+
+    return min(result) if result != [] else -1
 
