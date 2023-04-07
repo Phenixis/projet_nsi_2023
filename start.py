@@ -82,7 +82,7 @@ def joue():
 
     for score in highscores.keys():
         print(score)
-    """
+
     go_on = True
 
     while go_on:
@@ -163,7 +163,6 @@ def joue():
             pygame.draw.rect(screen, elt[1], elt[0], 5)
 
         pygame.display.update()
-        """
     return ""
 
 
@@ -175,4 +174,4 @@ def jouer():
         return ""
 
 
-joue()
+jouer()
