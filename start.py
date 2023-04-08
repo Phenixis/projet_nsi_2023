@@ -14,9 +14,9 @@ def joue():
     pygame.draw.rect(screen, BG, BOUTON_MUSIQUE_2)
     BOUTON_MUSIQUE_3 = pygame.Rect(WIDTH - 1150, HEIGHT - 200, 90, 50)
     pygame.draw.rect(screen, BG, BOUTON_MUSIQUE_3)
-    BOUTON_LOUDER = pygame.Rect(WIDTH - 700, HEIGHT - 200, 120, 50)
+    BOUTON_LOUDER = pygame.Rect(WIDTH - 670, HEIGHT - 200, 150, 50)
     pygame.draw.rect(screen, BG, BOUTON_LOUDER)
-    BOUTON_QUIETER = pygame.Rect(WIDTH - 850, HEIGHT - 200, 120, 50)
+    BOUTON_QUIETER = pygame.Rect(WIDTH - 850, HEIGHT - 200, 150, 50)
     pygame.draw.rect(screen, BG, BOUTON_QUIETER)
     BOUTON_MUTE = pygame.Rect(WIDTH - 1000, HEIGHT - 200, 120, 50)
     pygame.draw.rect(screen, BG, BOUTON_MUTE)
@@ -55,8 +55,8 @@ def joue():
     text_volume = font.render("VOLUME", False, 'white')
     text_mute = font.render("MUTE", False, 'white')
     font = pygame.font.Font("./ressources/Font/Maze.ttf", 40)
-    text_louder = font.render("loud", False, 'white')
-    text_quieter = font.render("quiet", False, 'white')
+    text_louder = font.render("LOUDER", False, 'white')
+    text_quieter = font.render("QUIETER", False, 'white')
 
     list_text = [(titre_MAZE, (WIDTH // 2.9, 25)),
                  (text_button_level_3, (WIDTH // 1.3 + 35, 325)),
@@ -69,7 +69,7 @@ def joue():
                  (text_volume, (WIDTH - 850, HEIGHT - 250)),
                  (text_mute, (WIDTH - 990, HEIGHT - 195)),
                  (text_quieter, (WIDTH - 840, HEIGHT - 195)),
-                 (text_louder, (WIDTH - 690, HEIGHT - 195))]
+                 (text_louder, (WIDTH - 660, HEIGHT - 195))]
 
     # -- fastest games --
     highscores = {}
@@ -108,7 +108,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("../bin/no.wav")
+                    music = pygame.mixer.Sound("./ressources/Musique/no.wav")
                     music.play(-1)
                     music.set_volume(0.5)
 
@@ -116,7 +116,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("../bin/no.wav")
+                    music = pygame.mixer.Sound("./ressources/Musique/no.wav")
                     music.play(-1)
                     music.set_volume(0.5)
 
@@ -124,7 +124,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("../bin/no.wav")
+                    music = pygame.mixer.Sound("./ressources/Musique/no.wav")
                     music.play(-1)
                     music.set_volume(0.5)
 
