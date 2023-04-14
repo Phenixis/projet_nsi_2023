@@ -8,19 +8,19 @@ def moving_in_the_graph(player, dir, graph, region, level):
     Vérifie si la direction dans laquelle va le joueur a un mur ou non
     déplace le joueur dans la direction si possible
     """
-    if dir == 'q' and ((
+    if dir in ['q', 'Q'] and ((
                                (player.column, player.row), (player.column - 1,
                                                              player.row)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update('l', region, level)
-    elif dir == 'd' and ((
+    elif dir in ['d', 'D'] and ((
                                  (player.column, player.row), (player.column + 1,
                                                                player.row)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("r", region, level)
-    elif dir == 's' and ((
+    elif dir in ['s', 'S'] and ((
                                  (player.column, player.row), (player.column,
                                                                player.row + 1)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("d", region, level)
-    elif dir == 'z' and ((
+    elif dir in ['z', 'Z'] and ((
                                  (player.column, player.row), (player.column,
                                                                player.row - 1)) in graph.edges or player.cross_mur) and not player.immobile:
         player.update("u", region, level)

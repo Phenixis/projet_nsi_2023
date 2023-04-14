@@ -128,7 +128,7 @@ class Joueur:
         if self.immobile:
             self.image.fill(RED)
         self.immobile = False
-        if time > (self.immobile_end + CD_IMMOBILE):
+        if time > (self.immobile_end + CD_STUNT):
             self.immobile_end = 0
 
     def refresh_immobile(self, time):
