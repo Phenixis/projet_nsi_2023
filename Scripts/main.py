@@ -141,8 +141,6 @@ def app(level : int):
                 if event.dict['text'] == 'é' and joueur.cross_mur_end == 0 and not joueur.immobile:
                     joueur.start_cross_mur()
 
-                if joueur.slower:
-                    sleep(0.2)
 
                 if time_0 == -1:
                     time_0 = time()
@@ -219,12 +217,12 @@ def app(level : int):
             if joueur.immobile_end != 0:
                 joueur.refresh_immobile(time())
 
-        for button in list_buttons_j2:
-            if button[0].collidepoint(pygame.mouse.get_pos()):
-                button[1] = BLACK
-                break
-            else:
-                button[1] = WHITE
+        # for button in list_buttons_j2:
+        #     if button[0].collidepoint(pygame.mouse.get_pos()):
+        #         button[1] = BLACK
+        #         break
+        #     else:
+        #         button[1] = WHITE
 
         pygame.draw.rect(screen, WHITE, rect_comp_J1, 10, 5)
         pygame.draw.rect(screen, WHITE, rect_comp_J2, 10, 5)

@@ -28,10 +28,10 @@ BG = BLACK
 
 # Valeur constante
 # LEVEL = 1  # int(input("À quel niveau voulez-vous jouer ? "))
-CD_MOB = 20
+CD_MOB = 17
 CD_SHIELD = 5
-CD_CROSS_MUR = 60
-CD_IMMOBILE = 60
+CD_CROSS_MUR = 30
+CD_IMMOBILE = 30
 
 # Espaces d'affichage
 rect_comp_J1 = pygame.Rect(5, HEIGHT - 90, (COLUMNS * SIZE) - 5, 80)
