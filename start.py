@@ -116,7 +116,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("./ressources/Musique/no.wav")
+                    music = pygame.mixer.Sound("./ressources/Musique/pacman.mp3")
                     music.play(-1)
                     music.set_volume(0.5)
 
@@ -124,7 +124,7 @@ def joue():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if music:
                         music.stop()
-                    music = pygame.mixer.Sound("./ressources/Musique/no.wav")
+                    music = pygame.mixer.Sound("./ressources/Musique/run.mp3")
                     music.play(-1)
                     music.set_volume(0.5)
 
